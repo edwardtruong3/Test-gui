@@ -48,7 +48,7 @@ def create_pdf(patient_data, risk_score, narrative):
     pdf.multi_cell(0, 7, narrative)
     
     # CRITICAL FIX: Ensure output is returned as bytes
-    return bytes(pdf.output())
+    return pdf.output()
 
 # 1. SETUP
 st.set_page_config(page_title="AF Recurrence Supervisor", layout="wide")
