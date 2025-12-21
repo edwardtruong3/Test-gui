@@ -1,6 +1,44 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
+from fpdf import FPDF
+from datetime import date
+
+# --- PDF GENERATION LOGIC ---
+class PatientReport(FPDF):
+    def header(self):
+        self.set_font('Arial', 'B', 12)
+        self.cell(0, 10, 'Clinical Decision Support: AF Recurrence Report', border=True, ln=1, align='C')
+        self.ln(5)
+
+    def footer(self):
+        self.set_y(-15)
+        self.set_font('Arial', 'I', 8)
+        self.cell(0, 10, f'Generated on {date.today()} - Confidential Medical Research', 0, 0, 'C')
+
+def create_pdf(patient_data, risk_score, narrative):
+    pdf = PatientReport()
+    pdf.add_page()
+    
+    # Patient Demographics Section
+    pdf.set_font('Arial', 'B', 14)
+    pdf.cell(0, 10, f"Patient ID: {patient_data['PatientID']}", ln=1)
+    pdf.set_font('Arial', '', 11)
+    pdf.cell(0, 7, f"Age: {patient_data['Age']} | Type: {patient_data['AF_Type']} | BMI: {patient_data['BMI']}", ln=1)
+    pdf.ln(5)
+    
+    # Risk Assessment Section
+    pdf.set_fill_color(240, 240, 240)
+    pdf.set_font('Arial', 'B', 12)
+    pdf.cell(0, 10, f"Calculated Risk of 12-Month Recurrence: {risk_score}", ln=1, fill=True)
+    pdf.ln(5)
+    
+    # Clinical Narrative Section
+    pdf.set_font('Arial', 'B', 12)
+    pdf.cell(0, 10, "Clinical Narrative & Supervisor Analysis:", ln=1)
+    pdf.set_font('Arial', '', 11)
+    pdf.multi_cell(0, 7, narrative)
+    
+    return pdf.output()
 
 # 1. SETUP
 st.set_page_config(page_title="AF Recurrence Supervisor", layout="wide")
@@ -76,3 +114,24 @@ st.divider()
 st.subheader("Decision Logic (SHAP Explanations)")
 st.write("Internal Logic Visualization would go here.")
 #
+
+st.divider()
+st.subheader("Report Export")
+
+# Mock narrative for the PDF
+llm_narrative = (
+    f"The patient (ID: {selected_id}) presents with a {risk_score:.1%} risk of recurrence. "
+    "Key drivers include LA Volume and existing comorbidities. Nearest neighbor analysis "
+    "suggests a high correlation with historical cases that failed within 6 months. "
+    "Recommendation: Consider aggressive rhythm control and early 3-month follow-up."
+)
+
+# Create PDF and provide download button
+pdf_bytes = create_pdf(patient_row, f"{risk_score:.1%}", llm_narrative)
+
+st.download_button(
+    label="📥 Download Clinical Risk Report (PDF)",
+    data=pdf_bytes,
+    file_name=f"AF_Report_Patient_{selected_id}.pdf",
+    mime="application/pdf"
+)
