@@ -67,7 +67,7 @@ patient_row = data[data['PatientID'] == selected_id].copy()
 # 3. MAIN PREDICTION ROW
 st.title("AF Recurrence Clinical Decision Support")
 
-risk_score = 78%
+risk_score = 0.78
 
 col1, col2 = st.columns([1, 2])
 with col1:
