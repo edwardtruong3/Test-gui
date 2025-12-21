@@ -48,7 +48,9 @@ with col1:
     st.write(f"**LA Volume Index:** {patient_row['LA_Vol']} ml/m²")
     
     # Trigger the Popup
-    if st.button("🔍 View Similar Patients"):
+    #if st.button("🔍 View Similar Patients"):
+    #    show_neighbor_details(selected_id)
+    with st.expander("View Similar Patients", expanded=False):
         show_neighbor_details(selected_id)
 
 with col2:
