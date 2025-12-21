@@ -20,11 +20,18 @@ def create_pdf(patient_data, risk_score, narrative):
     pdf = PatientReport()
     pdf.add_page()
     
+    # Extract values safely from the pandas row
+    # We use .iloc[0] or .item() to get the actual value, not the Series
+    p_id = patient_data['PatientID'].values[0]
+    age = patient_data['Age'].values[0]
+    af_type = patient_data['AF_Type'].values[0]
+    bmi = patient_data['BMI'].values[0]
+
     # Patient Demographics Section
     pdf.set_font('Arial', 'B', 14)
-    pdf.cell(0, 10, f"Patient ID: {patient_data['PatientID']}", ln=1)
+    pdf.cell(0, 10, f"Patient ID: {p_id}", ln=1)
     pdf.set_font('Arial', '', 11)
-    pdf.cell(0, 7, f"Age: {patient_data['Age']} | Type: {patient_data['AF_Type']} | BMI: {patient_data['BMI']}", ln=1)
+    pdf.cell(0, 7, f"Age: {age} | Type: {af_type} | BMI: {bmi}", ln=1)
     pdf.ln(5)
     
     # Risk Assessment Section
@@ -37,9 +44,11 @@ def create_pdf(patient_data, risk_score, narrative):
     pdf.set_font('Arial', 'B', 12)
     pdf.cell(0, 10, "Clinical Narrative & Supervisor Analysis:", ln=1)
     pdf.set_font('Arial', '', 11)
+    # multi_cell is great for long LLM narratives
     pdf.multi_cell(0, 7, narrative)
     
-    return pdf.output()
+    # CRITICAL FIX: Ensure output is returned as bytes
+    return bytes(pdf.output())
 
 # 1. SETUP
 st.set_page_config(page_title="AF Recurrence Supervisor", layout="wide")
