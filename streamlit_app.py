@@ -67,6 +67,8 @@ patient_row = data[data['PatientID'] == selected_id].copy()
 # 3. MAIN PREDICTION ROW
 st.title("AF Recurrence Clinical Decision Support")
 
+risk_score = 78%
+
 col1, col2 = st.columns([1, 2])
 with col1:
     st.metric(label="12-Month Recurrence Risk", value="78%", delta="High Risk", delta_color="inverse")
@@ -117,7 +119,7 @@ st.write("Internal Logic Visualization would go here.")
 #
 
 st.divider()
-st.subheader("Report Export")
+st.subheader("Export Prediction Report")
 
 # Mock narrative for the PDF
 llm_narrative = (
