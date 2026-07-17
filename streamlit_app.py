@@ -1,3 +1,6 @@
+Here is the updated Streamlit script. I've added a disabled chat input and a disclaimer to the sidebar to handle the dummy chatbot requirement, and I removed the "Model Confidence" column entirely, adjusting the layout so the feature importance bars utilize the full width nicely.
+
+```python
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -134,6 +137,14 @@ st.sidebar.write(f"**AF Type:** {patient_row['AF_Type'].values[0]}")
 st.sidebar.write(f"**LA Volume:** {patient_row['LA_Vol'].values[0]} mL")
 st.sidebar.write(f"**BMI:** {patient_row['BMI'].values[0]}")
 
+st.sidebar.markdown("---")
+
+# Dummy Chatbot Section
+st.sidebar.header("💬 AI Assistant")
+st.sidebar.info("Chatbot functionality is not available in this interactive demo.")
+st.sidebar.chat_input("Ask about this patient...", disabled=True)
+
+
 # 3. MAIN PREDICTION ROW
 st.title("🫀 AF Recurrence Clinical Decision Support")
 st.markdown("### Predictive Analytics for Atrial Fibrillation Management")
@@ -215,27 +226,17 @@ with st.expander("View Similar Historical Cases (Nearest Neighbors Comparison)",
 st.divider()
 st.subheader("🔍 Decision Logic (Feature Importance)")
 
-col1, col2 = st.columns(2)
+st.markdown("#### Top Risk Factors")
+feature_importance = {
+    'LA Volume': 0.35,
+    'AF Type': 0.25,
+    'Age': 0.20,
+    'BMI': 0.15,
+    'Historical Outcome': 0.05
+}
 
-with col1:
-    st.markdown("#### Top Risk Factors")
-    feature_importance = {
-        'LA Volume': 0.35,
-        'AF Type': 0.25,
-        'Age': 0.20,
-        'BMI': 0.15,
-        'Historical Outcome': 0.05
-    }
-    
-    for feature, importance in feature_importance.items():
-        st.progress(importance, text=f"{feature}: {importance:.0%}")
-
-with col2:
-    st.markdown("#### Model Confidence")
-    st.write(f"**Prediction Confidence:** 85%")
-    st.write(f"**Model Version:** v2.1.0")
-    st.write(f"**Training Cohort Size:** 1,247 patients")
-    st.write(f"**Model AUC:** 0.84")
+for feature, importance in feature_importance.items():
+    st.progress(importance, text=f"{feature}: {importance:.0%}")
 
 st.info("💡 **Clinical Context:** This prediction is based on a validated machine learning model trained on multi-center registry data. Always consider individual patient factors and clinical judgment.")
 
@@ -288,3 +289,5 @@ st.divider()
 st.caption("⚠️ **Disclaimer:** This tool is for research and clinical decision support purposes only. "
           "It should not replace clinical judgment or be used as the sole basis for treatment decisions. "
           "Always consult with qualified healthcare professionals.")
+
+```
