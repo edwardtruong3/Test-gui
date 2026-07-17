@@ -1,5 +1,3 @@
-Here is the updated Streamlit script. I've added a disabled chat input and a disclaimer to the sidebar to handle the dummy chatbot requirement, and I removed the "Model Confidence" column entirely, adjusting the layout so the feature importance bars utilize the full width nicely.
-
 ```python
 import streamlit as st
 import pandas as pd
