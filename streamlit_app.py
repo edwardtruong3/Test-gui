@@ -1,4 +1,3 @@
-```python
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -287,5 +286,3 @@ st.divider()
 st.caption("⚠️ **Disclaimer:** This tool is for research and clinical decision support purposes only. "
           "It should not replace clinical judgment or be used as the sole basis for treatment decisions. "
           "Always consult with qualified healthcare professionals.")
-
-```
