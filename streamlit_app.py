@@ -221,59 +221,78 @@ with st.expander("View Similar Historical Cases (Nearest Neighbors Comparison)",
 
 st.divider()
 
-# 6. DUAL EXPLAINABILITY SECTIONS (Mathematical Alignment & Bidirectional Columns)
+# 6. DUAL EXPLAINABILITY SECTIONS (Diverging Horizontal Bar Chart)
+st.divider()
 st.subheader("🔍 Decision Logic (Feature Attribution Profiles)")
 st.markdown(f"**Baseline Cohort Risk:** 40% | **Patient Risk Contribution:** +38% | **Final Calculated Risk:** **{risk_score:.0%}**")
 
-feat_col1, feat_col2 = st.columns(2)
+# Import altair locally for the visualization layer
+import altair as alt
 
-with feat_col1:
-    st.markdown("#### 🟥 Risk Factors (Increases Risk)")
-    
-    # Positive impact values pushing baseline (40%) upward
-    risk_data = pd.DataFrame({
-        "Clinical Feature": ["LA Volume Enlargement", "Persistent Classification", "Advanced Age Index", "Elevated BMI Impact", "Comorbidity Score"],
-        "SHAP Impact Value": [0.22, 0.15, 0.08, 0.04, 0.01]
-    })
-    
-    st.dataframe(
-        risk_data,
-        column_config={
-            "SHAP Impact Value": st.column_config.ProgressColumn(
-                "Attribution Impact",
-                help="Contribution direction pushing toward recurrence",
-                format="+%.0%",
-                min_value=0.0,
-                max_value=0.5,
-            )
-        },
-        use_container_width=True,
-        hide_index=True
-    )
+# 1. Prepare unified data structures for the diverging plot
+explainability_data = pd.DataFrame({
+    "Clinical Feature": [
+        "LA Volume Enlargement", "Persistent Classification", "Advanced Age Index", "Elevated BMI Impact", "Comorbidity Score",
+        "Active Antiarrhythmic Control", "Controlled Blood Pressure", "No Left Atrial Fibrosis", "Preserved EF (>55%)", "Prior Catheter Ablation"
+    ],
+    "SHAP Impact Value": [0.22, 0.15, 0.08, 0.04, 0.01, -0.05, -0.04, -0.02, -0.01, 0.00],
+    "Type": ["Risk Factor", "Risk Factor", "Risk Factor", "Risk Factor", "Risk Factor", 
+            "Protective Factor", "Protective Factor", "Protective Factor", "Protective Factor", "Protective Factor"]
+})
 
-with feat_col2:
-    st.markdown("#### 🟩 Protective Factors (Decreases Risk)")
-    
-    # Negative impact values offsetting the risks
-    protective_data = pd.DataFrame({
-        "Clinical Feature": ["Active Antiarrhythmic Control", "Controlled Blood Pressure", "No Left Atrial Fibrosis", "Preserved EF (>55%)", "Prior Catheter Ablation"],
-        "SHAP Impact Value": [-0.05, -0.04, -0.02, -0.01, 0.00]
-    })
-    
-    st.dataframe(
-        protective_data,
-        column_config={
-            "SHAP Impact Value": st.column_config.ProgressColumn(
-                "Attribution Impact",
-                help="Contribution direction preventing recurrence",
-                format="%.0%",
-                min_value=-0.2, # Progress extends leftward back to 0.0
-                max_value=0.0,
+# 2. Build the Altair Diverging Chart Object
+diverging_chart = (
+    alt.Chart(explainability_data)
+    .mark_bar(height=24, cornerRadiusEnd=4)
+    .encode(
+        # X-axis maps the impact extending left/right from 0
+        x=alt.X(
+            "SHAP Impact Value:Q",
+            title="Attribution Impact on Risk Score",
+            axis=alt.Axis(format="+.0%", tickCount=6),
+            scale=alt.Scale(domain=[-0.25, 0.25]) # Keeps the 0 baseline beautifully centered
+        ),
+        # Y-axis lists features, sorted logically by absolute impact magnitude
+        y=alt.Y(
+            "Clinical Feature:N",
+            title=None,
+            sort=alt.EncodingSortField(field="SHAP Impact Value", order="descending"),
+            axis=alt.Axis(labelPadding=10)
+        ),
+        # Color conditional logic mapping semantic clinical risk
+        color=alt.Color(
+            "Type:N",
+            legend=alt.Legend(title="Factor Categorization", orient="top-left"),
+            scale=alt.Scale(
+                domain=["Risk Factor", "Protective Factor"],
+                range=["#e45756", "#4c78a8"] # Clean crimson-red vs medical-blue/teal palette
             )
-        },
-        use_container_width=True,
-        hide_index=True
+        ),
+        tooltip=[
+            alt.Tooltip("Clinical Feature:N"),
+            alt.Tooltip("SHAP Impact Value:Q", format="+.1%", title="Impact Contribution"),
+            alt.Tooltip("Type:N")
+        ]
     )
+    .properties(
+        height=350,
+        title=alt.TitleParams(
+            text="Bi-Directional Risk Vector Mapping",
+            subtitle="Left-facing blocks compress risk | Right-facing blocks escalate risk thresholds",
+            anchor="start",
+            fontSize=14,
+            subtitleFontSize=11,
+            subtitleColor="#666"
+        )
+    )
+)
+
+# 3. Add a clean baseline ruler annotation over the chart at exactly 0.0
+zero_rule = alt.Chart(pd.DataFrame([{"zero": 0}])).mark_rule(color="#333", strokeWidth=1.5).encode(x="zero:Q")
+final_layered_chart = alt.layer(diverging_chart, zero_rule).configure_view(strokeWidth=0)
+
+# 4. Render chart seamlessly responsive across containers
+st.altair_chart(final_layered_chart, use_container_width=True)
 
 st.info("💡 **Clinical Context:** The waterfall balance equation matches: **Baseline (40%)** + **Risk Sum (+50%)** + **Protective Sum (-12%)** = **78% Final Risk Profile**.")
 
