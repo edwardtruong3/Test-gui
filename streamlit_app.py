@@ -71,7 +71,7 @@ def create_pdf(patient_data, risk_score, narrative):
         return pdf_output
 
 # 1. SETUP & THEME CLEANUP
-st.set_page_config(page_title="AF Recurrence Supervisor", layout="wide")
+st.set_page_config(page_title="PredictAF", layout="wide")
 
 st.markdown("""
     <style>
@@ -110,7 +110,7 @@ st.sidebar.markdown("---")
 selected_id = st.sidebar.selectbox(
     "Select Patient ID",
     data['PatientID'],
-    help="Choose a patient from the registry to view their risk assessment"
+    help="Choose a patient from the registry to view their AF recurrence risk assessment"
 )
 
 patient_row = data[data['PatientID'] == selected_id].copy()
@@ -129,7 +129,7 @@ st.sidebar.chat_input("Ask about this patient...", disabled=True)
 # 3. INTERACTIVE DIALOG (POPUP) FOR PATIENT DETAILS
 @st.dialog("📋 Comprehensive Patient Record")
 def show_patient_details(df_row):
-    st.write(f"Detailed clinical attributes cataloged for **Patient {df_row['PatientID'].values[0]}**:")
+    st.write(f"Detailed clinical attributes catalogued for **Patient {df_row['PatientID'].values[0]}**:")
     
     details_df = pd.DataFrame({
         "Clinical Attribute": ["Patient Identifier", "Age", "Atrial Fibrillation Classification", "Left Atrial Volume (LAVi)", "Body Mass Index (BMI)", "Historical Clinical Outcome"],
@@ -147,8 +147,8 @@ def show_patient_details(df_row):
         st.rerun()
 
 # 4. MAIN PREDICTION ROW
-st.title("🫀 AF Recurrence Clinical Decision Support")
-st.markdown("### Predictive Analytics for Atrial Fibrillation Management")
+st.title("🫀 PredictAFR: Helping Clinicians Assess Risk with Confidence")
+st.markdown("### Machine Learning Prediction of Atrial Fibrillation Recurrence at 12 Months After Catheter Ablation")
 
 risk_score = 0.78
 risk_level = "High Risk" if risk_score > 0.6 else "Moderate Risk" if risk_score > 0.3 else "Low Risk"
@@ -179,7 +179,7 @@ with col3:
     )
 
 # Cleaned-up 2-column wide button span directly under metrics 1 & 2
-btn_col, clear_col = st.columns([2, 3])
+btn_col, clear_col = st.columns([3, 3])
 with btn_col:
     if st.button("🔎 View Patient Details", use_container_width=True):
         show_patient_details(patient_row)
@@ -222,7 +222,6 @@ with st.expander("View Similar Historical Cases (Nearest Neighbors Comparison)",
 st.divider()
 
 # 6. DUAL EXPLAINABILITY SECTIONS (Diverging Horizontal Bar Chart)
-st.divider()
 st.subheader("🔍 Decision Logic (Feature Attribution Profiles)")
 st.markdown(f"**Baseline Cohort Risk:** 40% | **Patient Risk Contribution:** +38% | **Final Calculated Risk:** **{risk_score:.0%}**")
 
@@ -278,7 +277,7 @@ diverging_chart = (
         height=350,
         title=alt.TitleParams(
             text="Bi-Directional Risk Vector Mapping",
-            subtitle="Left-facing blocks compress risk | Right-facing blocks escalate risk thresholds",
+            subtitle="Left-facing blocks are protective | Right-facing blocks escalate risk thresholds",
             anchor="start",
             fontSize=14,
             subtitleFontSize=11,
