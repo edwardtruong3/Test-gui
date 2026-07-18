@@ -72,7 +72,7 @@ def create_pdf(patient_data, risk_score, narrative):
         return pdf_output
 
 # 1. SETUP & PRODUCTION THEME CSS
-st.set_page_config(page_title="AF Recurrence Supervisor", layout="wide")
+st.set_page_config(page_title="PredictAF", layout="wide")
 
 st.markdown("""
     <style>
@@ -151,14 +151,14 @@ def show_patient_details(df_row):
         st.rerun()
 
 # 4. MAIN PREDICTION ROW
-st.title("🫀 AF Recurrence Clinical Decision Support")
-st.markdown("### Predictive Analytics for Atrial Fibrillation Management")
+st.title("🫀 PredictAFR: Helping Clinicians Assess Risk Confidently")
+st.markdown("## Machine Learning Prediction of Atrial Fibrillation Recurrence 12 Months After Catheter Ablation")
 
 risk_score = 0.78
 risk_level = "High Risk" if risk_score > 0.6 else "Moderate Risk" if risk_score > 0.3 else "Low Risk"
 
 # Configured columns: col1 & col2 handle individual metrics; col3 is 2 columns wide to support a longer LLM Brief
-col1, col2, col3 = st.columns([1, 1, 2])
+col1, col2, col3 = st.columns([1, 1, 4])
 
 with col1:
     st.markdown('<div class="metric-card">', unsafe_allow_html=True)
@@ -276,8 +276,8 @@ diverging_chart = (
     .properties(
         height=350,
         title=alt.TitleParams(
-            text="Bi-Directional Risk Vector Mapping",
-            subtitle="Left-facing vectors mitigate risk thresholds | Right-facing vectors escalate risk levels",
+            text="SHAP Value Waterfall Plot",
+            subtitle="Left-facing vectors are protective | Right-facing vectors elevate risk",
             anchor="start",
             fontSize=14,
             subtitleFontSize=11,
