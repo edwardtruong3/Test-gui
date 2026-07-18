@@ -149,7 +149,6 @@ def show_patient_details(df_row):
 # 4. MAIN PREDICTION ROW
 st.title("🫀 AF Recurrence Clinical Decision Support")
 st.markdown("### Predictive Analytics for Atrial Fibrillation Management")
-st.space = st.empty()
 
 risk_score = 0.78
 risk_level = "High Risk" if risk_score > 0.6 else "Moderate Risk" if risk_score > 0.3 else "Low Risk"
@@ -170,9 +169,6 @@ with col2:
         value=f"{patient_row['LA_Vol'].values[0]} mL",
         delta="Above threshold" if patient_row['LA_Vol'].values[0] > 40 else "Normal"
     )
-    # Trigger Button for Modal Popup below metrics
-    if st.button("🔎 View Patient Details", use_container_width=True):
-        show_patient_details(patient_row)
 
 with col3:
     st.markdown("##### 🤖 LLM Supervisor Brief")
@@ -182,6 +178,12 @@ with col3:
         "**Recommended:** Short-term AAD continuation with close monitoring."
     )
 
+# Cleaned-up 2-column wide button span directly under metrics 1 & 2
+btn_col, clear_col = st.columns([2, 2])
+with btn_col:
+    if st.button("🔎 View Patient Details", use_container_width=True):
+        show_patient_details(patient_row)
+
 st.divider()
 
 # 5. CASE-BASED REASONING (5 Patients Retrieval)
@@ -190,7 +192,6 @@ st.subheader("📊 Case-Based Reasoning")
 with st.expander("View Similar Historical Cases (Nearest Neighbors Comparison)", expanded=False):
     st.write("The following 5 patients from the training cohort share the closest alignment with current clinical features:")
     
-    # Retrieve 5 unique neighbors
     neighbors = data[data['PatientID'] != selected_id].sample(5, random_state=42)
     
     patient_row_display = patient_row.copy()
@@ -220,37 +221,61 @@ with st.expander("View Similar Historical Cases (Nearest Neighbors Comparison)",
 
 st.divider()
 
-# 6. DUAL EXPLAINABILITY SECTIONS
+# 6. DUAL EXPLAINABILITY SECTIONS (Mathematical Alignment & Bidirectional Columns)
 st.subheader("🔍 Decision Logic (Feature Attribution Profiles)")
+st.markdown(f"**Baseline Cohort Risk:** 40% | **Patient Risk Contribution:** +38% | **Final Calculated Risk:** **{risk_score:.0%}**")
 
 feat_col1, feat_col2 = st.columns(2)
 
 with feat_col1:
-    st.markdown("#### 🟥 Top Risk Factors")
-    risk_factors = {
-        'LA Volume Enchancement': 0.42,
-        'Persistent Classification': 0.31,
-        'Advanced Age Index': 0.18,
-        'Elevated BMI Impact': 0.12,
-        'Comorbidity Score': 0.04
-    }
-    for feature, weight in risk_factors.items():
-        st.progress(weight, text=f"{feature}: +{weight:.0%}")
+    st.markdown("#### 🟥 Risk Factors (Increases Risk)")
+    
+    # Positive impact values pushing baseline (40%) upward
+    risk_data = pd.DataFrame({
+        "Clinical Feature": ["LA Volume Enlargement", "Persistent Classification", "Advanced Age Index", "Elevated BMI Impact", "Comorbidity Score"],
+        "SHAP Impact Value": [0.22, 0.15, 0.08, 0.04, 0.01]
+    })
+    
+    st.dataframe(
+        risk_data,
+        column_config={
+            "SHAP Impact Value": st.column_config.ProgressColumn(
+                "Attribution Impact",
+                help="Contribution direction pushing toward recurrence",
+                format="+%.0%",
+                min_value=0.0,
+                max_value=0.5,
+            )
+        },
+        use_container_width=True,
+        hide_index=True
+    )
 
 with feat_col2:
-    st.markdown("#### 🟩 Top Protective Factors")
-    protective_factors = {
-        'Prior Successful Ablation': 0.38,
-        'Active Antiarrhythmic Control': 0.28,
-        'Controlled Blood Pressure': 0.19,
-        'Preserved EF (>55%)': 0.11,
-        'No Left Atrial Fibrosis': 0.07
-    }
-    for feature, weight in protective_factors.items():
-        st.progress(weight, text=f"{feature}: -{weight:.0%}")
+    st.markdown("#### 🟩 Protective Factors (Decreases Risk)")
+    
+    # Negative impact values offsetting the risks
+    protective_data = pd.DataFrame({
+        "Clinical Feature": ["Active Antiarrhythmic Control", "Controlled Blood Pressure", "No Left Atrial Fibrosis", "Preserved EF (>55%)", "Prior Catheter Ablation"],
+        "SHAP Impact Value": [-0.05, -0.04, -0.02, -0.01, 0.00]
+    })
+    
+    st.dataframe(
+        protective_data,
+        column_config={
+            "SHAP Impact Value": st.column_config.ProgressColumn(
+                "Attribution Impact",
+                help="Contribution direction preventing recurrence",
+                format="%.0%",
+                min_value=-0.2, # Progress extends leftward back to 0.0
+                max_value=0.0,
+            )
+        },
+        use_container_width=True,
+        hide_index=True
+    )
 
-st.space.caption("") # Visual formatting buffer
-st.info("💡 **Clinical Context:** This evaluation represents directional SHAP allocations. Always reconcile statistical predictions with physical presentation benchmarks and local safety criteria.")
+st.info("💡 **Clinical Context:** The waterfall balance equation matches: **Baseline (40%)** + **Risk Sum (+50%)** + **Protective Sum (-12%)** = **78% Final Risk Profile**.")
 
 st.divider()
 
