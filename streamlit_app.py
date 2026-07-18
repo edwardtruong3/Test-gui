@@ -4,6 +4,7 @@ import numpy as np
 from fpdf import FPDF
 from datetime import date
 import io
+import altair as alt
 
 # --- PDF GENERATION LOGIC ---
 class PatientReport(FPDF):
@@ -70,22 +71,25 @@ def create_pdf(patient_data, risk_score, narrative):
     else:
         return pdf_output
 
-# 1. SETUP & THEME CLEANUP
-st.set_page_config(page_title="PredictAF", layout="wide")
+# 1. SETUP & PRODUCTION THEME CSS
+st.set_page_config(page_title="AF Recurrence Supervisor", layout="wide")
 
 st.markdown("""
     <style>
-    .metric-container {
-        background-color: #f8f9fa;
-        padding: 15px;
+    .reportview-container { background-color: #fcfdfe; }
+    .metric-card {
+        background-color: #ffffff;
+        padding: 20px;
         border-radius: 8px;
-        border-left: 5px solid #1f77b4;
-        margin-bottom: 10px;
+        border: 1px solid #eef1f6;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
     }
     div[data-testid="stExpander"] {
-        border: 1px solid #e6e9ef;
+        border: 1px solid #eef1f6;
         border-radius: 8px;
+        background-color: #ffffff;
     }
+    .sidebar-text { font-size: 14px; margin-bottom: 5px; }
     </style>
     """, unsafe_allow_html=True)
 
@@ -110,16 +114,16 @@ st.sidebar.markdown("---")
 selected_id = st.sidebar.selectbox(
     "Select Patient ID",
     data['PatientID'],
-    help="Choose a patient from the registry to view their AF recurrence risk assessment"
+    help="Choose a patient from the registry to view their risk assessment"
 )
 
 patient_row = data[data['PatientID'] == selected_id].copy()
 
 st.sidebar.markdown("### Patient Summary")
-st.sidebar.write(f"**Age:** {patient_row['Age'].values[0]} years")
-st.sidebar.write(f"**AF Type:** {patient_row['AF_Type'].values[0]}")
-st.sidebar.write(f"**LA Volume:** {patient_row['LA_Vol'].values[0]} mL")
-st.sidebar.write(f"**BMI:** {patient_row['BMI'].values[0]}")
+st.sidebar.markdown(f"<div class='sidebar-text'><b>Age:</b> {patient_row['Age'].values[0]} years</div>", unsafe_allow_html=True)
+st.sidebar.markdown(f"<div class='sidebar-text'><b>AF Type:</b> {patient_row['AF_Type'].values[0]}</div>", unsafe_allow_html=True)
+st.sidebar.markdown(f"<div class='sidebar-text'><b>LA Volume:</b> {patient_row['LA_Vol'].values[0]} mL</div>", unsafe_allow_html=True)
+st.sidebar.markdown(f"<div class='sidebar-text'><b>BMI:</b> {patient_row['BMI'].values[0]}</div>", unsafe_allow_html=True)
 
 st.sidebar.markdown("---")
 st.sidebar.header("💬 AI Assistant")
@@ -129,7 +133,7 @@ st.sidebar.chat_input("Ask about this patient...", disabled=True)
 # 3. INTERACTIVE DIALOG (POPUP) FOR PATIENT DETAILS
 @st.dialog("📋 Comprehensive Patient Record")
 def show_patient_details(df_row):
-    st.write(f"Detailed clinical attributes catalogued for **Patient {df_row['PatientID'].values[0]}**:")
+    st.write(f"Detailed clinical attributes cataloged for **Patient {df_row['PatientID'].values[0]}**:")
     
     details_df = pd.DataFrame({
         "Clinical Attribute": ["Patient Identifier", "Age", "Atrial Fibrillation Classification", "Left Atrial Volume (LAVi)", "Body Mass Index (BMI)", "Historical Clinical Outcome"],
@@ -143,46 +147,50 @@ def show_patient_details(df_row):
         ]
     })
     st.table(details_df)
-    if st.button("Close Window"):
+    if st.button("Close Window", use_container_width=True):
         st.rerun()
 
 # 4. MAIN PREDICTION ROW
-st.title("🫀 PredictAFR: Helping Clinicians Assess Risk with Confidence")
-st.markdown("### Machine Learning Prediction of Atrial Fibrillation Recurrence at 12 Months After Catheter Ablation")
+st.title("🫀 AF Recurrence Clinical Decision Support")
+st.markdown("### Predictive Analytics for Atrial Fibrillation Management")
 
 risk_score = 0.78
 risk_level = "High Risk" if risk_score > 0.6 else "Moderate Risk" if risk_score > 0.3 else "Low Risk"
 
+# Configured columns: col1 & col2 handle individual metrics; col3 is 2 columns wide to support a longer LLM Brief
 col1, col2, col3 = st.columns([1, 1, 2])
 
 with col1:
+    st.markdown('<div class="metric-card">', unsafe_allow_html=True)
     st.metric(
         label="12-Month Recurrence Risk",
         value=f"{risk_score:.0%}",
         delta=risk_level,
         delta_color="inverse"
     )
+    st.markdown('</div>', unsafe_allow_html=True)
     
 with col2:
+    st.markdown('<div class="metric-card">', unsafe_allow_html=True)
     st.metric(
         label="LA Volume Index",
         value=f"{patient_row['LA_Vol'].values[0]} mL",
         delta="Above threshold" if patient_row['LA_Vol'].values[0] > 40 else "Normal"
     )
+    st.markdown('</div>', unsafe_allow_html=True)
 
 with col3:
     st.markdown("##### 🤖 LLM Supervisor Brief")
     st.info(
         f"**Assessment:** {risk_level} driven by LA Volume ({patient_row['LA_Vol'].values[0]} mL) "
         f"and AF Type ({patient_row['AF_Type'].values[0]}). "
-        "**Recommended:** Short-term AAD continuation with close monitoring."
+        "**Recommended:** Short-term AAD continuation with close monitoring. "
+        "Aggressive rhythm control measures are suggested based on historical cohorts matching this anatomy."
     )
 
-# Cleaned-up 2-column wide button span directly under metrics 1 & 2
-btn_col, clear_col = st.columns([3, 3])
-with btn_col:
-    if st.button("🔎 View Patient Details", use_container_width=True):
-        show_patient_details(patient_row)
+# Button spans cleanly across the entire row grid space below metrics
+if st.button("🔎 View Comprehensive Patient Profile Details", use_container_width=True):
+    show_patient_details(patient_row)
 
 st.divider()
 
@@ -225,10 +233,6 @@ st.divider()
 st.subheader("🔍 Decision Logic (Feature Attribution Profiles)")
 st.markdown(f"**Baseline Cohort Risk:** 40% | **Patient Risk Contribution:** +38% | **Final Calculated Risk:** **{risk_score:.0%}**")
 
-# Import altair locally for the visualization layer
-import altair as alt
-
-# 1. Prepare unified data structures for the diverging plot
 explainability_data = pd.DataFrame({
     "Clinical Feature": [
         "LA Volume Enlargement", "Persistent Classification", "Advanced Age Index", "Elevated BMI Impact", "Comorbidity Score",
@@ -239,32 +243,28 @@ explainability_data = pd.DataFrame({
             "Protective Factor", "Protective Factor", "Protective Factor", "Protective Factor", "Protective Factor"]
 })
 
-# 2. Build the Altair Diverging Chart Object
 diverging_chart = (
     alt.Chart(explainability_data)
     .mark_bar(height=24, cornerRadiusEnd=4)
     .encode(
-        # X-axis maps the impact extending left/right from 0
         x=alt.X(
             "SHAP Impact Value:Q",
             title="Attribution Impact on Risk Score",
             axis=alt.Axis(format="+.0%", tickCount=6),
-            scale=alt.Scale(domain=[-0.25, 0.25]) # Keeps the 0 baseline beautifully centered
+            scale=alt.Scale(domain=[-0.25, 0.25])
         ),
-        # Y-axis lists features, sorted logically by absolute impact magnitude
         y=alt.Y(
             "Clinical Feature:N",
             title=None,
             sort=alt.EncodingSortField(field="SHAP Impact Value", order="descending"),
             axis=alt.Axis(labelPadding=10)
         ),
-        # Color conditional logic mapping semantic clinical risk
         color=alt.Color(
             "Type:N",
             legend=alt.Legend(title="Factor Categorization", orient="top-left"),
             scale=alt.Scale(
                 domain=["Risk Factor", "Protective Factor"],
-                range=["#e45756", "#4c78a8"] # Clean crimson-red vs medical-blue/teal palette
+                range=["#e45756", "#4c78a8"]
             )
         ),
         tooltip=[
@@ -277,7 +277,7 @@ diverging_chart = (
         height=350,
         title=alt.TitleParams(
             text="Bi-Directional Risk Vector Mapping",
-            subtitle="Left-facing blocks are protective | Right-facing blocks escalate risk thresholds",
+            subtitle="Left-facing vectors mitigate risk thresholds | Right-facing vectors escalate risk levels",
             anchor="start",
             fontSize=14,
             subtitleFontSize=11,
@@ -286,11 +286,9 @@ diverging_chart = (
     )
 )
 
-# 3. Add a clean baseline ruler annotation over the chart at exactly 0.0
 zero_rule = alt.Chart(pd.DataFrame([{"zero": 0}])).mark_rule(color="#333", strokeWidth=1.5).encode(x="zero:Q")
 final_layered_chart = alt.layer(diverging_chart, zero_rule).configure_view(strokeWidth=0)
 
-# 4. Render chart seamlessly responsive across containers
 st.altair_chart(final_layered_chart, use_container_width=True)
 
 st.info("💡 **Clinical Context:** The waterfall balance equation matches: **Baseline (40%)** + **Risk Sum (+50%)** + **Protective Sum (-12%)** = **78% Final Risk Profile**.")
