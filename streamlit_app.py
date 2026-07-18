@@ -179,7 +179,7 @@ with col3:
     )
 
 # Cleaned-up 2-column wide button span directly under metrics 1 & 2
-btn_col, clear_col = st.columns([2, 2])
+btn_col, clear_col = st.columns([2, 3])
 with btn_col:
     if st.button("🔎 View Patient Details", use_container_width=True):
         show_patient_details(patient_row)
