@@ -161,23 +161,22 @@ risk_level = "High Risk" if risk_score > 0.6 else "Moderate Risk" if risk_score 
 col1, col2, col3 = st.columns([1, 1, 4])
 
 with col1:
-    st.markdown('<div class="metric-card">', unsafe_allow_html=True)
-    st.metric(
-        label="12-Month Recurrence Risk",
-        value=f"{risk_score:.0%}",
-        delta=risk_level,
-        delta_color="inverse"
-    )
-    st.markdown('</div>', unsafe_allow_html=True)
+    # Using native Streamlit bordered containers eliminates the HTML render bug
+    with st.container(border=True):
+        st.metric(
+            label="12-Month Recurrence Risk",
+            value=f"{risk_score:.0%}",
+            delta=risk_level,
+            delta_color="inverse"
+        )
     
 with col2:
-    st.markdown('<div class="metric-card">', unsafe_allow_html=True)
-    st.metric(
-        label="LA Volume Index",
-        value=f"{patient_row['LA_Vol'].values[0]} mL",
-        delta="Above threshold" if patient_row['LA_Vol'].values[0] > 40 else "Normal"
-    )
-    st.markdown('</div>', unsafe_allow_html=True)
+    with st.container(border=True):
+        st.metric(
+            label="LA Volume Index",
+            value=f"{patient_row['LA_Vol'].values[0]} mL",
+            delta="Above threshold" if patient_row['LA_Vol'].values[0] > 40 else "Normal"
+        )
 
 with col3:
     st.markdown("##### 🤖 LLM Supervisor Brief")
