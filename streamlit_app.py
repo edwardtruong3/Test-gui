@@ -1,332 +1,330 @@
-import streamlit as st
-import pandas as pd
-import numpy as np
-from fpdf import FPDF
+"""
+PredictAFR — Clinical Decision Support Demo
+Machine-learning-style prediction of atrial fibrillation recurrence
+12 months after catheter ablation.
+
+IMPORTANT: All patient data is synthetic (see generate_data.py) and the
+"model" is a hand-built mock explainer for teaching purposes. This app is a
+research/education demo only and must not be used for clinical decisions.
+"""
+
 from datetime import date
-import io
+
 import altair as alt
+import numpy as np
+import pandas as pd
+import streamlit as st
 
-# --- PDF GENERATION LOGIC ---
-class PatientReport(FPDF):
-    def header(self):
-        self.set_font('Arial', 'B', 12)
-        self.cell(0, 10, 'Clinical Decision Support: AF Recurrence Report', border=True, ln=1, align='C')
-        self.ln(5)
+from report_utils import build_pdf, generate_narrative, generate_recommendations
 
-    def footer(self):
-        self.set_y(-15)
-        self.set_font('Arial', 'I', 8)
-        self.cell(0, 10, f'Generated on {date.today()} - Confidential Medical Research', 0, 0, 'C')
+# --------------------------------------------------------------------------
+# Page setup
+# --------------------------------------------------------------------------
+st.set_page_config(page_title="PredictAFR", page_icon="🫀", layout="wide")
 
-def create_pdf(patient_data, risk_score, narrative):
-    pdf = PatientReport()
-    pdf.add_page()
-    
-    p_id = patient_data['PatientID'].values[0]
-    age = patient_data['Age'].values[0]
-    af_type = patient_data['AF_Type'].values[0]
-    bmi = patient_data['BMI'].values[0]
-    la_vol = patient_data['LA_Vol'].values[0]
-    outcome = patient_data['Outcome'].values[0]
-
-    pdf.set_font('Arial', 'B', 14)
-    pdf.cell(0, 10, f"Patient ID: {p_id}", ln=1)
-    pdf.set_font('Arial', '', 11)
-    pdf.cell(0, 7, f"Age: {age} years", ln=1)
-    pdf.cell(0, 7, f"AF Type: {af_type}", ln=1)
-    pdf.cell(0, 7, f"BMI: {bmi}", ln=1)
-    pdf.cell(0, 7, f"LA Volume: {la_vol} mL", ln=1)
-    pdf.cell(0, 7, f"Historical Outcome: {outcome}", ln=1)
-    pdf.ln(5)
-    
-    pdf.set_fill_color(240, 240, 240)
-    pdf.set_font('Arial', 'B', 12)
-    pdf.cell(0, 10, f"Calculated Risk of 12-Month Recurrence: {risk_score}", ln=1, fill=True)
-    pdf.ln(5)
-    
-    pdf.set_font('Arial', 'B', 12)
-    pdf.cell(0, 10, "Clinical Narrative & Supervisor Analysis:", ln=1)
-    pdf.set_font('Arial', '', 11)
-    pdf.multi_cell(0, 7, narrative)
-    pdf.ln(5)
-    
-    pdf.set_font('Arial', 'B', 12)
-    pdf.cell(0, 10, "Clinical Recommendations:", ln=1)
-    pdf.set_font('Arial', '', 11)
-    
-    recommendations = [
-        "1. Consider aggressive rhythm control strategy",
-        "2. Schedule early 3-month follow-up appointment",
-        "3. Continue antiarrhythmic drug (AAD) therapy",
-        "4. Monitor for symptoms and quality of life changes",
-        "5. Reassess anticoagulation strategy if indicated"
-    ]
-    
-    for rec in recommendations:
-        pdf.cell(0, 7, rec, ln=1)
-    
-    pdf_output = pdf.output(dest='S')
-    if isinstance(pdf_output, str):
-        return pdf_output.encode('latin-1')
-    else:
-        return pdf_output
-
-# 1. SETUP & PRODUCTION THEME CSS
-st.set_page_config(page_title="PredictAF", layout="wide")
-
-st.markdown("""
+st.markdown(
+    """
     <style>
-    .reportview-container { background-color: #fcfdfe; }
-    .metric-card {
+    .stApp { background-color: #fbfcfe; }
+    div[data-testid="stMetric"] {
         background-color: #ffffff;
-        padding: 20px;
-        border-radius: 8px;
         border: 1px solid #eef1f6;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        border-radius: 10px;
+        padding: 14px 16px;
+        box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
     }
     div[data-testid="stExpander"] {
         border: 1px solid #eef1f6;
-        border-radius: 8px;
+        border-radius: 10px;
         background-color: #ffffff;
     }
-    .sidebar-text { font-size: 14px; margin-bottom: 5px; }
+    .section-caption { color: #667085; font-size: 0.85rem; }
     </style>
-    """, unsafe_allow_html=True)
-
-@st.cache_data
-def load_and_prep_data():
-    np.random.seed(42)
-    df = pd.DataFrame({
-        'PatientID': range(101, 120),
-        'Age': np.random.randint(45, 80, 19),
-        'AF_Type': np.random.choice(['Paroxysmal', 'Persistent'], 19),
-        'LA_Vol': np.random.randint(25, 60, 19),
-        'BMI': np.random.randint(22, 38, 19),
-        'Outcome': np.random.choice(['Recurred', 'Sinus Rhythm'], 19, p=[0.6, 0.4])
-    })
-    return df
-
-data = load_and_prep_data()
-
-# 2. SIDEBAR SELECTION
-st.sidebar.header("🏥 Patient Selection")
-st.sidebar.markdown("---")
-selected_id = st.sidebar.selectbox(
-    "Select Patient ID",
-    data['PatientID'],
-    help="Choose a patient from the registry to view their risk assessment"
+    """,
+    unsafe_allow_html=True,
 )
 
-patient_row = data[data['PatientID'] == selected_id].copy()
+NUMERIC_COMPARISON_FEATURES = ["Age", "LAVi", "AF_Duration_Months", "LA_Reservoir_Strain", "LVEF"]
 
-st.sidebar.markdown("### Patient Summary")
-st.sidebar.markdown(f"<div class='sidebar-text'><b>Age:</b> {patient_row['Age'].values[0]} years</div>", unsafe_allow_html=True)
-st.sidebar.markdown(f"<div class='sidebar-text'><b>AF Type:</b> {patient_row['AF_Type'].values[0]}</div>", unsafe_allow_html=True)
-st.sidebar.markdown(f"<div class='sidebar-text'><b>LA Volume:</b> {patient_row['LA_Vol'].values[0]} mL</div>", unsafe_allow_html=True)
-st.sidebar.markdown(f"<div class='sidebar-text'><b>BMI:</b> {patient_row['BMI'].values[0]}</div>", unsafe_allow_html=True)
+FIELD_GROUPS = {
+    "Demographics": [
+        ("Age", "Age", "years"), ("Sex", "Sex", ""), ("BMI", "BMI", "kg/m²"),
+        ("Alcohol_Use", "Alcohol use", ""), ("Smoking_Status", "Smoking status", ""),
+        ("Drug_Use", "Recreational drug use", ""), ("APPLE_Score", "APPLE score", "/5"),
+        ("CHA2DS2_VASc", "CHA₂DS₂-VASc", ""), ("HAS_BLED", "HAS-BLED", ""),
+    ],
+    "Comorbidities & Prior Events": [
+        ("CHF", "Congestive heart failure", ""), ("Hypertension", "Hypertension", ""),
+        ("Vascular_Disease", "Vascular disease", ""), ("Thyroid_Disorder", "Thyroid disorder", ""),
+        ("Renal_Disorder", "Renal disorder", ""), ("Hepatic_Disorder", "Hepatic disorder", ""),
+        ("Respiratory_Disorder", "Respiratory disorder", ""), ("OSA", "Obstructive sleep apnoea", ""),
+        ("Diabetes", "Diabetes mellitus", ""), ("Prior_Stroke_TIA_TE", "Prior stroke/TIA/TE", ""),
+        ("Prior_MI", "Prior myocardial infarction", ""),
+    ],
+    "Medications": [
+        ("OAC_Use", "Oral anticoagulant", ""), ("Antiplatelet_Use", "Antiplatelet", ""),
+        ("Antiarrhythmic_Use", "Antiarrhythmic", ""), ("Beta_Blocker_Use", "Beta blocker", ""),
+        ("Statin_Use", "Statin", ""),
+    ],
+    "Biochemistry": [
+        ("Haemoglobin", "Haemoglobin", "g/L"), ("Creatinine", "Creatinine", "μmol/L"),
+        ("eGFR_Over_90", "eGFR > 90", ""), ("ALT", "ALT", "U/L"),
+    ],
+    "AF Details": [
+        ("AF_Type", "AF type", ""), ("AF_Duration_Months", "AF duration", "months"),
+        ("Concomitant_Flutter", "Concomitant atrial flutter", ""),
+        ("Prior_Cardioversion", "Prior DC cardioversion", ""), ("Ablation_Type", "Ablation type", ""),
+    ],
+    "Imaging": [
+        ("IVSd", "IVSd", "cm"), ("LVVi", "LV volume index", "mL/m²"), ("LVEF", "LVEF", "%"),
+        ("LAVi", "LA volume index", "mL/m²"), ("E_A_Ratio", "E/A ratio", ""),
+        ("E_e_prime_avg", "E/e' average", ""),
+    ],
+    "Left Atrial Strain": [
+        ("Time_to_Peak_ms", "Time to peak", "ms"), ("LA_Reservoir_Strain", "LA reservoir strain", "%"),
+        ("LA_Conduit_Strain", "LA conduit strain", "%"), ("LA_Contractile_Strain", "LA contractile strain", "%"),
+    ],
+}
+
+
+# --------------------------------------------------------------------------
+# Data loading
+# --------------------------------------------------------------------------
+@st.cache_data
+def load_data():
+    patients = pd.read_csv("patients.csv")
+    shap_values = pd.read_csv("shap_values.csv")
+    return patients, shap_values
+
+
+def format_value(row, col, unit) -> str:
+    val = row[col]
+    if col in BINARY_COLUMNS:
+        return "Yes" if val == 1 else "No"
+    if unit:
+        return f"{val} {unit}"
+    return str(val)
+
+
+def nearest_neighbours(patients: pd.DataFrame, patient_id: int, k: int = 5) -> pd.DataFrame:
+    """Standardised Euclidean distance over a small clinically-relevant feature set."""
+    features = patients[NUMERIC_COMPARISON_FEATURES]
+    z = (features - features.mean()) / features.std(ddof=0)
+    target = z.loc[patients["PatientID"] == patient_id].iloc[0]
+    distances = np.sqrt(((z - target) ** 2).sum(axis=1))
+    ranked = patients.assign(_distance=distances.values)
+    ranked = ranked[ranked["PatientID"] != patient_id].sort_values("_distance")
+    return ranked.head(k)
+
+
+def render_waterfall(shap_row: pd.DataFrame, patient_id: int):
+    chart_data = shap_row.copy()
+    bars = (
+        alt.Chart(chart_data)
+        .mark_bar(height=20, cornerRadiusEnd=3)
+        .encode(
+            x=alt.X(
+                "SHAP_Value:Q",
+                title="Attribution impact on risk score",
+                axis=alt.Axis(format="+.0%"),
+            ),
+            y=alt.Y(
+                "Feature:N",
+                title=None,
+                sort=alt.EncodingSortField(field="SHAP_Value", order="descending"),
+            ),
+            color=alt.Color(
+                "Type:N",
+                legend=alt.Legend(title="Factor", orient="top-left"),
+                scale=alt.Scale(
+                    domain=["Risk Factor", "Protective Factor"],
+                    range=["#e45756", "#4c78a8"],
+                ),
+            ),
+            tooltip=[
+                alt.Tooltip("Feature:N"),
+                alt.Tooltip("SHAP_Value:Q", format="+.1%", title="Contribution"),
+                alt.Tooltip("Type:N"),
+            ],
+        )
+        .properties(
+            height=380,
+            title=alt.TitleParams(
+                text=f"Feature attribution — Patient {patient_id}",
+                subtitle="Left = protective | Right = elevates risk",
+                anchor="start",
+                fontSize=14,
+                subtitleFontSize=11,
+                subtitleColor="#666",
+            ),
+        )
+    )
+    zero_rule = alt.Chart(pd.DataFrame([{"zero": 0}])).mark_rule(color="#333", strokeWidth=1.5).encode(x="zero:Q")
+    return alt.layer(bars, zero_rule).configure_view(strokeWidth=0)
+
+
+# --------------------------------------------------------------------------
+# Load data & establish binary columns (for Yes/No formatting)
+# --------------------------------------------------------------------------
+patients_df, shap_df = load_data()
+BINARY_COLUMNS = {
+    "CHF", "Hypertension", "Vascular_Disease", "Thyroid_Disorder", "Renal_Disorder",
+    "Hepatic_Disorder", "Respiratory_Disorder", "OSA", "Diabetes", "Prior_Stroke_TIA_TE",
+    "Prior_MI", "OAC_Use", "Antiplatelet_Use", "Antiarrhythmic_Use", "Beta_Blocker_Use",
+    "Statin_Use", "eGFR_Over_90", "Concomitant_Flutter", "Prior_Cardioversion",
+}
+
+# --------------------------------------------------------------------------
+# Sidebar: patient selection
+# --------------------------------------------------------------------------
+st.sidebar.header("🏥 Patient Selection")
+selected_id = st.sidebar.selectbox("Select Patient ID", patients_df["PatientID"])
+patient = patients_df.loc[patients_df["PatientID"] == selected_id].iloc[0]
+risk_score = float(patient["Risk_Score"])
+risk_level = "High Risk" if risk_score > 0.6 else "Moderate Risk" if risk_score > 0.3 else "Low Risk"
+
+st.sidebar.markdown("---")
+st.sidebar.markdown("**Quick Summary**")
+st.sidebar.write(f"Age {int(patient['Age'])} · {patient['Sex']}")
+st.sidebar.write(f"{patient['AF_Type']} AF, {int(patient['AF_Duration_Months'])} months")
+st.sidebar.write(f"LAVi {patient['LAVi']:.1f} mL/m² · LVEF {patient['LVEF']:.0f}%")
 
 st.sidebar.markdown("---")
 st.sidebar.header("💬 AI Assistant")
 st.sidebar.info("Chatbot functionality is not available in this interactive demo.")
 st.sidebar.chat_input("Ask about this patient...", disabled=True)
 
-# 3. INTERACTIVE DIALOG (POPUP) FOR PATIENT DETAILS
-@st.dialog("📋 Comprehensive Patient Record")
-def show_patient_details(df_row):
-    st.write(f"Detailed clinical attributes cataloged for **Patient {df_row['PatientID'].values[0]}**:")
-    
-    details_df = pd.DataFrame({
-        "Clinical Attribute": ["Patient Identifier", "Age", "Atrial Fibrillation Classification", "Left Atrial Volume (LAVi)", "Body Mass Index (BMI)", "Historical Clinical Outcome"],
-        "Value": [
-            str(df_row['PatientID'].values[0]),
-            f"{df_row['Age'].values[0]} years",
-            str(df_row['AF_Type'].values[0]),
-            f"{df_row['LA_Vol'].values[0]} mL",
-            f"{df_row['BMI'].values[0]} kg/m²",
-            str(df_row['Outcome'].values[0])
-        ]
-    })
-    st.table(details_df)
-    if st.button("Close Window", use_container_width=True):
-        st.rerun()
+# --------------------------------------------------------------------------
+# Header
+# --------------------------------------------------------------------------
+st.title("🫀 PredictAFR")
+st.markdown(
+    "##### Machine learning-style prediction of atrial fibrillation recurrence "
+    "12 months after catheter ablation"
+)
 
-# 4. MAIN PREDICTION ROW
-st.title("🫀 PredictAFR: Helping Clinicians Assess Risk Confidently")
-st.markdown("## Machine Learning Prediction of Atrial Fibrillation Recurrence 12 Months After Catheter Ablation")
+tab_risk, tab_profile, tab_cases, tab_export = st.tabs(
+    ["📈 Risk Assessment", "📋 Comprehensive Profile", "📊 Similar Cases", "📄 Export Report"]
+)
 
-risk_score = 0.78
-risk_level = "High Risk" if risk_score > 0.6 else "Moderate Risk" if risk_score > 0.3 else "Low Risk"
+# --------------------------------------------------------------------------
+# Tab 1: Risk Assessment
+# --------------------------------------------------------------------------
+with tab_risk:
+    patient_shap = shap_df[shap_df["PatientID"] == selected_id].sort_values(
+        "SHAP_Value", ascending=False
+    )
+    narrative = generate_narrative(patient, patient_shap.head(3), risk_score)
+    recommendations = generate_recommendations(patient, risk_score)
 
-# Configured columns: col1 & col2 handle individual metrics; col3 is 2 columns wide to support a longer LLM Brief
-col1, col2, col3 = st.columns([1, 1, 4])
-
-with col1:
-    # Using native Streamlit bordered containers eliminates the HTML render bug
-    with st.container(border=True):
+    col1, col2, col3 = st.columns([1, 1, 4])
+    with col1:
+        st.metric("12-Month Recurrence Risk", f"{risk_score:.0%}", delta=risk_level, delta_color="inverse")
+    with col2:
         st.metric(
-            label="12-Month Recurrence Risk",
-            value=f"{risk_score:.0%}",
-            delta=risk_level,
-            delta_color="inverse"
+            "LA Volume Index",
+            f"{patient['LAVi']:.1f} mL/m²",
+            delta="Above threshold" if patient["LAVi"] > 40 else "Normal",
         )
-    
-with col2:
-    with st.container(border=True):
-        st.metric(
-            label="LA Volume Index",
-            value=f"{patient_row['LA_Vol'].values[0]} mL",
-            delta="Above threshold" if patient_row['LA_Vol'].values[0] > 40 else "Normal"
-        )
+    with col3:
+        st.markdown("##### 🤖 Model Summary")
+        st.info(narrative)
 
-with col3:
-    st.markdown("##### 🤖 LLM Supervisor Brief")
-    st.info(
-        f"**Assessment:** {risk_level} driven by LA Volume ({patient_row['LA_Vol'].values[0]} mL) "
-        f"and AF Type ({patient_row['AF_Type'].values[0]}). "
-        "**Recommended:** Short-term AAD continuation with close monitoring. "
-        "Aggressive rhythm control measures are suggested based on historical cohorts matching this anatomy."
+    st.divider()
+    st.subheader("🔍 Decision Logic (Feature Attribution)")
+    st.altair_chart(render_waterfall(patient_shap, selected_id), width='stretch')
+
+    st.subheader("Clinical Recommendations")
+    for rec in recommendations:
+        st.markdown(f"- {rec}")
+
+# --------------------------------------------------------------------------
+# Tab 2: Comprehensive Profile
+# --------------------------------------------------------------------------
+with tab_profile:
+    st.markdown(f"#### Patient {int(patient['PatientID'])} — Comprehensive Record")
+    group_names = list(FIELD_GROUPS.keys())
+    profile_tabs = st.tabs(group_names)
+    for tab, group in zip(profile_tabs, group_names):
+        with tab:
+            fields = FIELD_GROUPS[group]
+            rows = [
+                {"Attribute": label, "Value": format_value(patient, col, unit)}
+                for col, label, unit in fields
+            ]
+            st.dataframe(pd.DataFrame(rows), hide_index=True, width='stretch')
+
+# --------------------------------------------------------------------------
+# Tab 3: Case-Based Reasoning
+# --------------------------------------------------------------------------
+with tab_cases:
+    st.subheader("📊 Case-Based Reasoning")
+    st.markdown(
+        "<span class='section-caption'>Nearest neighbours by standardised Euclidean distance "
+        f"over {', '.join(NUMERIC_COMPARISON_FEATURES)}.</span>",
+        unsafe_allow_html=True,
     )
 
-# Button spans cleanly across the entire row grid space below metrics
-if st.button("🔎 View Comprehensive Patient Profile Details", use_container_width=True):
-    show_patient_details(patient_row)
+    neighbours = nearest_neighbours(patients_df, selected_id, k=5)
 
-st.divider()
+    current_display = patient.to_frame().T.copy()
+    current_display["Category"] = "⭐ Current patient"
+    neighbours_display = neighbours.copy()
+    neighbours_display["Category"] = "📁 Historical match"
 
-# 5. CASE-BASED REASONING (5 Patients Retrieval)
-st.subheader("📊 Case-Based Reasoning")
+    display_cols = ["Category", "PatientID", "Age", "AF_Type", "LAVi", "LVEF",
+                     "LA_Reservoir_Strain", "AF_Duration_Months", "Outcome"]
+    comparison_df = pd.concat([current_display, neighbours_display], axis=0)[display_cols]
 
-with st.expander("View Similar Historical Cases (Nearest Neighbors Comparison)", expanded=False):
-    st.write("The following 5 patients from the training cohort share the closest alignment with current clinical features:")
-    
-    neighbors = data[data['PatientID'] != selected_id].sample(5, random_state=42)
-    
-    patient_row_display = patient_row.copy()
-    patient_row_display['Category'] = '⭐ CURRENT PATIENT'
-    neighbors_display = neighbors.copy()
-    neighbors_display['Category'] = '📁 Historical Match'
-    
-    comparison_df = pd.concat([patient_row_display, neighbors_display], axis=0).reset_index(drop=True)
-    cols = ['Category', 'PatientID', 'Age', 'AF_Type', 'LA_Vol', 'BMI', 'Outcome']
-    comparison_df = comparison_df[cols]
-
-    def highlight_selected(row):
-        if row['Category'] == '⭐ CURRENT PATIENT':
-            return ['background-color: #1f77b4; color: white; font-weight: bold'] * len(row)
-        return [''] * len(row)
+    def highlight_current(row):
+        if row["Category"] == "⭐ Current patient":
+            return ["background-color: #1f77b4; color: white; font-weight: bold"] * len(row)
+        return [""] * len(row)
 
     st.dataframe(
-        comparison_df.style.apply(highlight_selected, axis=1),
-        use_container_width=True,
-        hide_index=True
+        comparison_df.style.apply(highlight_current, axis=1),
+        hide_index=True,
+        width='stretch',
     )
-    
-    st.caption("📌 Note: Similarity space maps LA Volume, Age, and AF Type using a k-NN (k=5) algorithm topology.")
-    
-    recurred_count = neighbors_display[neighbors_display['Outcome'] == 'Recurred'].shape[0]
-    st.write(f"**Historical Pattern:** {recurred_count} out of 5 matched records experienced recurrence ({recurred_count/5:.0%})")
 
-st.divider()
-
-# 6. DUAL EXPLAINABILITY SECTIONS (Diverging Horizontal Bar Chart)
-st.subheader("🔍 Decision Logic (Feature Attribution Profiles)")
-st.markdown(f"**Baseline Cohort Risk:** 40% | **Patient Risk Contribution:** +38% | **Final Calculated Risk:** **{risk_score:.0%}**")
-
-explainability_data = pd.DataFrame({
-    "Clinical Feature": [
-        "LA Volume Enlargement", "Persistent Classification", "Advanced Age Index", "Elevated BMI Impact", "Comorbidity Score",
-        "Active Antiarrhythmic Control", "Controlled Blood Pressure", "No Left Atrial Fibrosis", "Preserved EF (>55%)", "Prior Catheter Ablation"
-    ],
-    "SHAP Impact Value": [0.22, 0.15, 0.08, 0.04, 0.01, -0.05, -0.04, -0.02, -0.01, 0.00],
-    "Type": ["Risk Factor", "Risk Factor", "Risk Factor", "Risk Factor", "Risk Factor", 
-            "Protective Factor", "Protective Factor", "Protective Factor", "Protective Factor", "Protective Factor"]
-})
-
-diverging_chart = (
-    alt.Chart(explainability_data)
-    .mark_bar(height=24, cornerRadiusEnd=4)
-    .encode(
-        x=alt.X(
-            "SHAP Impact Value:Q",
-            title="Attribution Impact on Risk Score",
-            axis=alt.Axis(format="+.0%", tickCount=6),
-            scale=alt.Scale(domain=[-0.25, 0.25])
-        ),
-        y=alt.Y(
-            "Clinical Feature:N",
-            title=None,
-            sort=alt.EncodingSortField(field="SHAP Impact Value", order="descending"),
-            axis=alt.Axis(labelPadding=10)
-        ),
-        color=alt.Color(
-            "Type:N",
-            legend=alt.Legend(title="Factor Categorization", orient="top-left"),
-            scale=alt.Scale(
-                domain=["Risk Factor", "Protective Factor"],
-                range=["#e45756", "#4c78a8"]
-            )
-        ),
-        tooltip=[
-            alt.Tooltip("Clinical Feature:N"),
-            alt.Tooltip("SHAP Impact Value:Q", format="+.1%", title="Impact Contribution"),
-            alt.Tooltip("Type:N")
-        ]
+    recurred_count = (neighbours_display["Outcome"] == "Recurred").sum()
+    st.write(
+        f"**Historical pattern:** {recurred_count} of 5 matched cases experienced recurrence "
+        f"({recurred_count / 5:.0%})."
     )
-    .properties(
-        height=350,
-        title=alt.TitleParams(
-            text="SHAP Value Waterfall Plot",
-            subtitle="Left-facing vectors are protective | Right-facing vectors elevate risk",
-            anchor="start",
-            fontSize=14,
-            subtitleFontSize=11,
-            subtitleColor="#666"
-        )
+
+# --------------------------------------------------------------------------
+# Tab 4: Export Report
+# --------------------------------------------------------------------------
+with tab_export:
+    st.subheader("📄 Export Prediction Report")
+    st.write(
+        "Generate an archival PDF report covering the comprehensive patient record, "
+        "feature attribution summary, and current recommendations."
     )
-)
 
-zero_rule = alt.Chart(pd.DataFrame([{"zero": 0}])).mark_rule(color="#333", strokeWidth=1.5).encode(x="zero:Q")
-final_layered_chart = alt.layer(diverging_chart, zero_rule).configure_view(strokeWidth=0)
+    patient_shap = shap_df[shap_df["PatientID"] == selected_id].sort_values(
+        "SHAP_Value", ascending=False
+    )
+    narrative = generate_narrative(patient, patient_shap.head(3), risk_score)
+    recommendations = generate_recommendations(patient, risk_score)
 
-st.altair_chart(final_layered_chart, use_container_width=True)
-
-st.info("💡 **Clinical Context:** The waterfall balance equation matches: **Baseline (40%)** + **Risk Sum (+50%)** + **Protective Sum (-12%)** = **78% Final Risk Profile**.")
-
-st.divider()
-
-# 7. EXPORT REPORT SECTION
-st.subheader("📄 Export Prediction Report")
-
-llm_narrative = (
-    f"The patient (ID: {selected_id}) presents with a {risk_score:.0%} estimated risk of atrial fibrillation "
-    f"recurrence within 12 months. Key clinical drivers contributing to this risk assessment include:\n\n"
-    f"1. Left Atrial Volume: {patient_row['LA_Vol'].values[0]} mL - {'elevated and associated with structural remodeling' if patient_row['LA_Vol'].values[0] > 40 else 'within normal limits'}\n"
-    f"2. AF Type: {patient_row['AF_Type'].values[0]} - {('associated with higher recurrence rates' if patient_row['AF_Type'].values[0] == 'Persistent' else 'generally favorable prognosis')}\n"
-    f"3. Patient Age: {patient_row['Age'].values[0]} years - relevant for treatment planning\n"
-    f"4. BMI: {patient_row['BMI'].values[0]} - consider impact on procedural outcomes\n\n"
-    f"Nearest neighbor metrics from our registry profile suggest structural synergy with {recurred_count} historical matches "
-    f"out of 5 that went on to display recurrent episodes.\n\n"
-    "Clinical recommendation: Establish optimized rhythm pathways, maintain antiarrhythmic tracking, and review at the 3-month mark."
-)
-
-col_exp1, col_exp2 = st.columns([2, 1])
-
-with col_exp1:
-    st.write("Generate a clear, archival PDF report encapsulating the dual explainability matrices, nearest neighbors registry profile, and current automated recommendations.")
-
-with col_exp2:
     try:
-        pdf_bytes = create_pdf(patient_row, f"{risk_score:.0%}", llm_narrative)
+        pdf_bytes = build_pdf(patient, risk_score, narrative, recommendations)
         st.download_button(
             label="📥 Download PDF Report",
             data=pdf_bytes,
             file_name=f"AF_Report_Patient_{selected_id}_{date.today()}.pdf",
             mime="application/pdf",
-            use_container_width=True
+            width='stretch',
         )
         st.success("✅ Report compiled cleanly")
-    except Exception as e:
-        st.error(f"❌ Document compilation exception: {str(e)}")
+    except Exception as exc:
+        st.error(f"❌ Document compilation exception: {exc}")
 
 st.divider()
-st.caption("⚠️ **Disclaimer:** This tool is for research and clinical decision support purposes only. It should not replace clinical judgment or be used as the sole basis for treatment decisions.")
+st.caption(
+    "⚠️ **Disclaimer:** This tool uses synthetic data and a mock model for research/education "
+    "purposes only. It should not replace clinical judgement or be used as the sole basis for "
+    "treatment decisions."
+)

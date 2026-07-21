@@ -1,0 +1,1021 @@
+PatientID,Feature,SHAP_Value,Type
+101,LA Volume Index (LAVi),-0.0017,Protective Factor
+101,Persistent / Long-standing AF,0.0613,Risk Factor
+101,LA Reservoir Strain,0.0028,Risk Factor
+101,AF Duration,0.0016,Risk Factor
+101,Left Ventricular EF,0.0065,Risk Factor
+101,Age,-0.0027,Protective Factor
+101,CHA2DS2-VASc Score,0.0155,Risk Factor
+101,E/e' Average (Diastolic Function),0.0047,Risk Factor
+101,Hypertension,0.0313,Risk Factor
+101,Obstructive Sleep Apnoea,0.0363,Risk Factor
+101,Diabetes Mellitus,0.0013,Risk Factor
+101,Antiarrhythmic Therapy,-0.0387,Protective Factor
+101,Prior DC Cardioversion,0.0013,Risk Factor
+101,Concomitant Atrial Flutter,0.0213,Risk Factor
+101,Preserved Renal Function (eGFR>90),-0.0237,Protective Factor
+101,LA Contractile Strain,0.0011,Risk Factor
+101,Beta Blocker Therapy,-0.0137,Protective Factor
+102,LA Volume Index (LAVi),-0.0188,Protective Factor
+102,Persistent / Long-standing AF,0.0002,Risk Factor
+102,LA Reservoir Strain,-0.0066,Protective Factor
+102,AF Duration,0.0014,Risk Factor
+102,Left Ventricular EF,-0.0021,Protective Factor
+102,Age,0.0024,Risk Factor
+102,CHA2DS2-VASc Score,0.0007,Risk Factor
+102,E/e' Average (Diastolic Function),0.0017,Risk Factor
+102,Hypertension,0.0002,Risk Factor
+102,Obstructive Sleep Apnoea,0.0352,Risk Factor
+102,Diabetes Mellitus,0.0002,Risk Factor
+102,Antiarrhythmic Therapy,-0.0398,Protective Factor
+102,Prior DC Cardioversion,0.0002,Risk Factor
+102,Concomitant Atrial Flutter,0.0002,Risk Factor
+102,Preserved Renal Function (eGFR>90),0.0002,Risk Factor
+102,LA Contractile Strain,-0.0021,Protective Factor
+102,Beta Blocker Therapy,-0.0148,Protective Factor
+103,LA Volume Index (LAVi),0.0095,Risk Factor
+103,Persistent / Long-standing AF,0.0599,Risk Factor
+103,LA Reservoir Strain,0.0095,Risk Factor
+103,AF Duration,0.0017,Risk Factor
+103,Left Ventricular EF,-0.0032,Protective Factor
+103,Age,0.001,Risk Factor
+103,CHA2DS2-VASc Score,-0.0132,Protective Factor
+103,E/e' Average (Diastolic Function),0.001,Risk Factor
+103,Hypertension,-0.0001,Protective Factor
+103,Obstructive Sleep Apnoea,-0.0001,Protective Factor
+103,Diabetes Mellitus,-0.0001,Protective Factor
+103,Antiarrhythmic Therapy,-0.0401,Protective Factor
+103,Prior DC Cardioversion,-0.0001,Protective Factor
+103,Concomitant Atrial Flutter,-0.0001,Protective Factor
+103,Preserved Renal Function (eGFR>90),-0.0001,Protective Factor
+103,LA Contractile Strain,0.0111,Risk Factor
+103,Beta Blocker Therapy,-0.0001,Protective Factor
+104,LA Volume Index (LAVi),0.0113,Risk Factor
+104,Persistent / Long-standing AF,0.0603,Risk Factor
+104,LA Reservoir Strain,0.0056,Risk Factor
+104,AF Duration,-0.0033,Protective Factor
+104,Left Ventricular EF,0.0022,Risk Factor
+104,Age,-0.0006,Protective Factor
+104,CHA2DS2-VASc Score,-0.0059,Protective Factor
+104,E/e' Average (Diastolic Function),-0.0121,Protective Factor
+104,Hypertension,0.0003,Risk Factor
+104,Obstructive Sleep Apnoea,0.0353,Risk Factor
+104,Diabetes Mellitus,0.0253,Risk Factor
+104,Antiarrhythmic Therapy,0.0003,Risk Factor
+104,Prior DC Cardioversion,0.0003,Risk Factor
+104,Concomitant Atrial Flutter,0.0203,Risk Factor
+104,Preserved Renal Function (eGFR>90),-0.0247,Protective Factor
+104,LA Contractile Strain,0.0071,Risk Factor
+104,Beta Blocker Therapy,-0.0147,Protective Factor
+105,LA Volume Index (LAVi),-0.007,Protective Factor
+105,Persistent / Long-standing AF,-0.0007,Protective Factor
+105,LA Reservoir Strain,-0.0238,Protective Factor
+105,AF Duration,-0.0052,Protective Factor
+105,Left Ventricular EF,-0.008,Protective Factor
+105,Age,-0.0016,Protective Factor
+105,CHA2DS2-VASc Score,-0.007,Protective Factor
+105,E/e' Average (Diastolic Function),-0.0096,Protective Factor
+105,Hypertension,0.0293,Risk Factor
+105,Obstructive Sleep Apnoea,-0.0007,Protective Factor
+105,Diabetes Mellitus,0.0243,Risk Factor
+105,Antiarrhythmic Therapy,-0.0407,Protective Factor
+105,Prior DC Cardioversion,-0.0007,Protective Factor
+105,Concomitant Atrial Flutter,-0.0007,Protective Factor
+105,Preserved Renal Function (eGFR>90),-0.0007,Protective Factor
+105,LA Contractile Strain,-0.0173,Protective Factor
+105,Beta Blocker Therapy,-0.0157,Protective Factor
+106,LA Volume Index (LAVi),-0.0018,Protective Factor
+106,Persistent / Long-standing AF,0.0591,Risk Factor
+106,LA Reservoir Strain,-0.0035,Protective Factor
+106,AF Duration,0.0025,Risk Factor
+106,Left Ventricular EF,0.0019,Risk Factor
+106,Age,0.0022,Risk Factor
+106,CHA2DS2-VASc Score,0.0065,Risk Factor
+106,E/e' Average (Diastolic Function),0.0087,Risk Factor
+106,Hypertension,0.0291,Risk Factor
+106,Obstructive Sleep Apnoea,-0.0009,Protective Factor
+106,Diabetes Mellitus,-0.0009,Protective Factor
+106,Antiarrhythmic Therapy,-0.0009,Protective Factor
+106,Prior DC Cardioversion,-0.0009,Protective Factor
+106,Concomitant Atrial Flutter,-0.0009,Protective Factor
+106,Preserved Renal Function (eGFR>90),-0.0009,Protective Factor
+106,LA Contractile Strain,0.0099,Risk Factor
+106,Beta Blocker Therapy,-0.0159,Protective Factor
+107,LA Volume Index (LAVi),-0.0002,Protective Factor
+107,Persistent / Long-standing AF,0.0011,Risk Factor
+107,LA Reservoir Strain,-0.011,Protective Factor
+107,AF Duration,-0.0011,Protective Factor
+107,Left Ventricular EF,0.0097,Risk Factor
+107,Age,-0.0029,Protective Factor
+107,CHA2DS2-VASc Score,-0.0051,Protective Factor
+107,E/e' Average (Diastolic Function),-0.0043,Protective Factor
+107,Hypertension,0.0311,Risk Factor
+107,Obstructive Sleep Apnoea,0.0361,Risk Factor
+107,Diabetes Mellitus,0.0261,Risk Factor
+107,Antiarrhythmic Therapy,-0.0389,Protective Factor
+107,Prior DC Cardioversion,0.0011,Risk Factor
+107,Concomitant Atrial Flutter,0.0011,Risk Factor
+107,Preserved Renal Function (eGFR>90),0.0011,Risk Factor
+107,LA Contractile Strain,0.0116,Risk Factor
+107,Beta Blocker Therapy,0.0011,Risk Factor
+108,LA Volume Index (LAVi),-0.0012,Protective Factor
+108,Persistent / Long-standing AF,0.0612,Risk Factor
+108,LA Reservoir Strain,-0.0018,Protective Factor
+108,AF Duration,0.0005,Risk Factor
+108,Left Ventricular EF,-0.0019,Protective Factor
+108,Age,0.0028,Risk Factor
+108,CHA2DS2-VASc Score,0.0086,Risk Factor
+108,E/e' Average (Diastolic Function),-0.008,Protective Factor
+108,Hypertension,0.0312,Risk Factor
+108,Obstructive Sleep Apnoea,0.0012,Risk Factor
+108,Diabetes Mellitus,0.0262,Risk Factor
+108,Antiarrhythmic Therapy,-0.0388,Protective Factor
+108,Prior DC Cardioversion,0.0212,Risk Factor
+108,Concomitant Atrial Flutter,0.0212,Risk Factor
+108,Preserved Renal Function (eGFR>90),0.0012,Risk Factor
+108,LA Contractile Strain,0.0207,Risk Factor
+108,Beta Blocker Therapy,0.0012,Risk Factor
+109,LA Volume Index (LAVi),-0.0162,Protective Factor
+109,Persistent / Long-standing AF,-0.0009,Protective Factor
+109,LA Reservoir Strain,-0.0189,Protective Factor
+109,AF Duration,-0.0045,Protective Factor
+109,Left Ventricular EF,0.0035,Risk Factor
+109,Age,-0.0038,Protective Factor
+109,CHA2DS2-VASc Score,0.0065,Risk Factor
+109,E/e' Average (Diastolic Function),0.0022,Risk Factor
+109,Hypertension,-0.0009,Protective Factor
+109,Obstructive Sleep Apnoea,0.0341,Risk Factor
+109,Diabetes Mellitus,0.0241,Risk Factor
+109,Antiarrhythmic Therapy,-0.0009,Protective Factor
+109,Prior DC Cardioversion,-0.0009,Protective Factor
+109,Concomitant Atrial Flutter,-0.0009,Protective Factor
+109,Preserved Renal Function (eGFR>90),-0.0009,Protective Factor
+109,LA Contractile Strain,0.0015,Risk Factor
+109,Beta Blocker Therapy,-0.0159,Protective Factor
+110,LA Volume Index (LAVi),-0.0005,Protective Factor
+110,Persistent / Long-standing AF,0.0609,Risk Factor
+110,LA Reservoir Strain,0.0061,Risk Factor
+110,AF Duration,0.0063,Risk Factor
+110,Left Ventricular EF,0.0086,Risk Factor
+110,Age,-0.0031,Protective Factor
+110,CHA2DS2-VASc Score,0.0014,Risk Factor
+110,E/e' Average (Diastolic Function),0.0012,Risk Factor
+110,Hypertension,0.0309,Risk Factor
+110,Obstructive Sleep Apnoea,0.0009,Risk Factor
+110,Diabetes Mellitus,0.0259,Risk Factor
+110,Antiarrhythmic Therapy,-0.0391,Protective Factor
+110,Prior DC Cardioversion,0.0009,Risk Factor
+110,Concomitant Atrial Flutter,0.0209,Risk Factor
+110,Preserved Renal Function (eGFR>90),-0.0241,Protective Factor
+110,LA Contractile Strain,0.018,Risk Factor
+110,Beta Blocker Therapy,0.0009,Risk Factor
+111,LA Volume Index (LAVi),0.0058,Risk Factor
+111,Persistent / Long-standing AF,-0.0001,Protective Factor
+111,LA Reservoir Strain,0.0132,Risk Factor
+111,AF Duration,-0.0018,Protective Factor
+111,Left Ventricular EF,0.0102,Risk Factor
+111,Age,-0.0001,Protective Factor
+111,CHA2DS2-VASc Score,0.0005,Risk Factor
+111,E/e' Average (Diastolic Function),0.0024,Risk Factor
+111,Hypertension,-0.0001,Protective Factor
+111,Obstructive Sleep Apnoea,-0.0001,Protective Factor
+111,Diabetes Mellitus,-0.0001,Protective Factor
+111,Antiarrhythmic Therapy,-0.0401,Protective Factor
+111,Prior DC Cardioversion,-0.0001,Protective Factor
+111,Concomitant Atrial Flutter,-0.0001,Protective Factor
+111,Preserved Renal Function (eGFR>90),-0.0001,Protective Factor
+111,LA Contractile Strain,-0.0037,Protective Factor
+111,Beta Blocker Therapy,-0.0001,Protective Factor
+112,LA Volume Index (LAVi),0.0138,Risk Factor
+112,Persistent / Long-standing AF,0.0603,Risk Factor
+112,LA Reservoir Strain,0.0082,Risk Factor
+112,AF Duration,0.0006,Risk Factor
+112,Left Ventricular EF,0.0022,Risk Factor
+112,Age,0.0045,Risk Factor
+112,CHA2DS2-VASc Score,0.0077,Risk Factor
+112,E/e' Average (Diastolic Function),0.002,Risk Factor
+112,Hypertension,0.0003,Risk Factor
+112,Obstructive Sleep Apnoea,0.0003,Risk Factor
+112,Diabetes Mellitus,0.0003,Risk Factor
+112,Antiarrhythmic Therapy,0.0003,Risk Factor
+112,Prior DC Cardioversion,0.0203,Risk Factor
+112,Concomitant Atrial Flutter,0.0003,Risk Factor
+112,Preserved Renal Function (eGFR>90),0.0003,Risk Factor
+112,LA Contractile Strain,0.0193,Risk Factor
+112,Beta Blocker Therapy,0.0003,Risk Factor
+113,LA Volume Index (LAVi),0.0165,Risk Factor
+113,Persistent / Long-standing AF,0.0604,Risk Factor
+113,LA Reservoir Strain,0.001,Risk Factor
+113,AF Duration,0.0062,Risk Factor
+113,Left Ventricular EF,0.0082,Risk Factor
+113,Age,0.0024,Risk Factor
+113,CHA2DS2-VASc Score,0.0078,Risk Factor
+113,E/e' Average (Diastolic Function),0.003,Risk Factor
+113,Hypertension,0.0004,Risk Factor
+113,Obstructive Sleep Apnoea,0.0004,Risk Factor
+113,Diabetes Mellitus,0.0004,Risk Factor
+113,Antiarrhythmic Therapy,-0.0396,Protective Factor
+113,Prior DC Cardioversion,0.0204,Risk Factor
+113,Concomitant Atrial Flutter,0.0004,Risk Factor
+113,Preserved Renal Function (eGFR>90),0.0004,Risk Factor
+113,LA Contractile Strain,0.0155,Risk Factor
+113,Beta Blocker Therapy,-0.0146,Protective Factor
+114,LA Volume Index (LAVi),0.0231,Risk Factor
+114,Persistent / Long-standing AF,0.0609,Risk Factor
+114,LA Reservoir Strain,0.0164,Risk Factor
+114,AF Duration,0.0048,Risk Factor
+114,Left Ventricular EF,0.0153,Risk Factor
+114,Age,0.0031,Risk Factor
+114,CHA2DS2-VASc Score,0.0151,Risk Factor
+114,E/e' Average (Diastolic Function),0.003,Risk Factor
+114,Hypertension,0.0309,Risk Factor
+114,Obstructive Sleep Apnoea,0.0009,Risk Factor
+114,Diabetes Mellitus,0.0259,Risk Factor
+114,Antiarrhythmic Therapy,-0.0391,Protective Factor
+114,Prior DC Cardioversion,0.0209,Risk Factor
+114,Concomitant Atrial Flutter,0.0009,Risk Factor
+114,Preserved Renal Function (eGFR>90),0.0009,Risk Factor
+114,LA Contractile Strain,0.0178,Risk Factor
+114,Beta Blocker Therapy,-0.0141,Protective Factor
+115,LA Volume Index (LAVi),0.0379,Risk Factor
+115,Persistent / Long-standing AF,0.0601,Risk Factor
+115,LA Reservoir Strain,0.0122,Risk Factor
+115,AF Duration,0.0008,Risk Factor
+115,Left Ventricular EF,-0.0106,Protective Factor
+115,Age,0.0018,Risk Factor
+115,CHA2DS2-VASc Score,0.0006,Risk Factor
+115,E/e' Average (Diastolic Function),0.0038,Risk Factor
+115,Hypertension,0.0301,Risk Factor
+115,Obstructive Sleep Apnoea,0.0001,Risk Factor
+115,Diabetes Mellitus,0.0001,Risk Factor
+115,Antiarrhythmic Therapy,-0.0399,Protective Factor
+115,Prior DC Cardioversion,0.0201,Risk Factor
+115,Concomitant Atrial Flutter,0.0001,Risk Factor
+115,Preserved Renal Function (eGFR>90),0.0001,Risk Factor
+115,LA Contractile Strain,0.017,Risk Factor
+115,Beta Blocker Therapy,0.0001,Risk Factor
+116,LA Volume Index (LAVi),-0.0137,Protective Factor
+116,Persistent / Long-standing AF,0.0612,Risk Factor
+116,LA Reservoir Strain,0.0081,Risk Factor
+116,AF Duration,-0.0029,Protective Factor
+116,Left Ventricular EF,0.0132,Risk Factor
+116,Age,0.0037,Risk Factor
+116,CHA2DS2-VASc Score,0.0223,Risk Factor
+116,E/e' Average (Diastolic Function),0.0125,Risk Factor
+116,Hypertension,0.0012,Risk Factor
+116,Obstructive Sleep Apnoea,0.0012,Risk Factor
+116,Diabetes Mellitus,0.0012,Risk Factor
+116,Antiarrhythmic Therapy,-0.0388,Protective Factor
+116,Prior DC Cardioversion,0.0012,Risk Factor
+116,Concomitant Atrial Flutter,0.0012,Risk Factor
+116,Preserved Renal Function (eGFR>90),0.0012,Risk Factor
+116,LA Contractile Strain,-0.0087,Protective Factor
+116,Beta Blocker Therapy,-0.0138,Protective Factor
+117,LA Volume Index (LAVi),-0.0036,Protective Factor
+117,Persistent / Long-standing AF,0.0603,Risk Factor
+117,LA Reservoir Strain,-0.0081,Protective Factor
+117,AF Duration,-0.0031,Protective Factor
+117,Left Ventricular EF,0.003,Risk Factor
+117,Age,0.0003,Risk Factor
+117,CHA2DS2-VASc Score,0.0008,Risk Factor
+117,E/e' Average (Diastolic Function),0.0053,Risk Factor
+117,Hypertension,0.0003,Risk Factor
+117,Obstructive Sleep Apnoea,0.0003,Risk Factor
+117,Diabetes Mellitus,0.0003,Risk Factor
+117,Antiarrhythmic Therapy,0.0003,Risk Factor
+117,Prior DC Cardioversion,0.0203,Risk Factor
+117,Concomitant Atrial Flutter,0.0003,Risk Factor
+117,Preserved Renal Function (eGFR>90),-0.0247,Protective Factor
+117,LA Contractile Strain,-0.0013,Protective Factor
+117,Beta Blocker Therapy,0.0003,Risk Factor
+118,LA Volume Index (LAVi),-0.0159,Protective Factor
+118,Persistent / Long-standing AF,0.0006,Risk Factor
+118,LA Reservoir Strain,-0.0119,Protective Factor
+118,AF Duration,-0.0031,Protective Factor
+118,Left Ventricular EF,-0.0026,Protective Factor
+118,Age,-0.003,Protective Factor
+118,CHA2DS2-VASc Score,-0.0057,Protective Factor
+118,E/e' Average (Diastolic Function),-0.0098,Protective Factor
+118,Hypertension,0.0006,Risk Factor
+118,Obstructive Sleep Apnoea,0.0356,Risk Factor
+118,Diabetes Mellitus,0.0006,Risk Factor
+118,Antiarrhythmic Therapy,0.0006,Risk Factor
+118,Prior DC Cardioversion,0.0006,Risk Factor
+118,Concomitant Atrial Flutter,0.0006,Risk Factor
+118,Preserved Renal Function (eGFR>90),0.0006,Risk Factor
+118,LA Contractile Strain,-0.0091,Protective Factor
+118,Beta Blocker Therapy,0.0006,Risk Factor
+119,LA Volume Index (LAVi),-0.004,Protective Factor
+119,Persistent / Long-standing AF,0.0593,Risk Factor
+119,LA Reservoir Strain,-0.0024,Protective Factor
+119,AF Duration,-0.0008,Protective Factor
+119,Left Ventricular EF,-0.0005,Protective Factor
+119,Age,0.0021,Risk Factor
+119,CHA2DS2-VASc Score,-0.0002,Protective Factor
+119,E/e' Average (Diastolic Function),0.0017,Risk Factor
+119,Hypertension,-0.0007,Protective Factor
+119,Obstructive Sleep Apnoea,-0.0007,Protective Factor
+119,Diabetes Mellitus,-0.0007,Protective Factor
+119,Antiarrhythmic Therapy,-0.0407,Protective Factor
+119,Prior DC Cardioversion,-0.0007,Protective Factor
+119,Concomitant Atrial Flutter,-0.0007,Protective Factor
+119,Preserved Renal Function (eGFR>90),-0.0007,Protective Factor
+119,LA Contractile Strain,0.0081,Risk Factor
+119,Beta Blocker Therapy,-0.0157,Protective Factor
+120,LA Volume Index (LAVi),-0.0178,Protective Factor
+120,Persistent / Long-standing AF,0.0019,Risk Factor
+120,LA Reservoir Strain,-0.0101,Protective Factor
+120,AF Duration,0.0016,Risk Factor
+120,Left Ventricular EF,0.0105,Risk Factor
+120,Age,0.0012,Risk Factor
+120,CHA2DS2-VASc Score,-0.0112,Protective Factor
+120,E/e' Average (Diastolic Function),0.0045,Risk Factor
+120,Hypertension,0.0019,Risk Factor
+120,Obstructive Sleep Apnoea,0.0019,Risk Factor
+120,Diabetes Mellitus,0.0019,Risk Factor
+120,Antiarrhythmic Therapy,0.0019,Risk Factor
+120,Prior DC Cardioversion,0.0219,Risk Factor
+120,Concomitant Atrial Flutter,0.0219,Risk Factor
+120,Preserved Renal Function (eGFR>90),-0.0231,Protective Factor
+120,LA Contractile Strain,-0.0043,Protective Factor
+120,Beta Blocker Therapy,0.0019,Risk Factor
+121,LA Volume Index (LAVi),0.0038,Risk Factor
+121,Persistent / Long-standing AF,0.0604,Risk Factor
+121,LA Reservoir Strain,0.0053,Risk Factor
+121,AF Duration,0.0012,Risk Factor
+121,Left Ventricular EF,-0.0069,Protective Factor
+121,Age,0.0002,Risk Factor
+121,CHA2DS2-VASc Score,0.001,Risk Factor
+121,E/e' Average (Diastolic Function),0.0066,Risk Factor
+121,Hypertension,0.0304,Risk Factor
+121,Obstructive Sleep Apnoea,0.0004,Risk Factor
+121,Diabetes Mellitus,0.0254,Risk Factor
+121,Antiarrhythmic Therapy,-0.0396,Protective Factor
+121,Prior DC Cardioversion,0.0204,Risk Factor
+121,Concomitant Atrial Flutter,0.0204,Risk Factor
+121,Preserved Renal Function (eGFR>90),-0.0246,Protective Factor
+121,LA Contractile Strain,0.0035,Risk Factor
+121,Beta Blocker Therapy,0.0004,Risk Factor
+122,LA Volume Index (LAVi),-0.022,Protective Factor
+122,Persistent / Long-standing AF,0.0006,Risk Factor
+122,LA Reservoir Strain,-0.0086,Protective Factor
+122,AF Duration,-0.0023,Protective Factor
+122,Left Ventricular EF,-0.0025,Protective Factor
+122,Age,-0.0007,Protective Factor
+122,CHA2DS2-VASc Score,-0.0193,Protective Factor
+122,E/e' Average (Diastolic Function),-0.0043,Protective Factor
+122,Hypertension,0.0006,Risk Factor
+122,Obstructive Sleep Apnoea,0.0006,Risk Factor
+122,Diabetes Mellitus,0.0006,Risk Factor
+122,Antiarrhythmic Therapy,-0.0394,Protective Factor
+122,Prior DC Cardioversion,0.0006,Risk Factor
+122,Concomitant Atrial Flutter,0.0006,Risk Factor
+122,Preserved Renal Function (eGFR>90),-0.0244,Protective Factor
+122,LA Contractile Strain,-0.0155,Protective Factor
+122,Beta Blocker Therapy,0.0006,Risk Factor
+123,LA Volume Index (LAVi),0.0094,Risk Factor
+123,Persistent / Long-standing AF,0.0586,Risk Factor
+123,LA Reservoir Strain,0.0138,Risk Factor
+123,AF Duration,0.0002,Risk Factor
+123,Left Ventricular EF,0.0072,Risk Factor
+123,Age,-0.0045,Protective Factor
+123,CHA2DS2-VASc Score,-0.0008,Protective Factor
+123,E/e' Average (Diastolic Function),0.0046,Risk Factor
+123,Hypertension,0.0286,Risk Factor
+123,Obstructive Sleep Apnoea,-0.0014,Protective Factor
+123,Diabetes Mellitus,-0.0014,Protective Factor
+123,Antiarrhythmic Therapy,-0.0414,Protective Factor
+123,Prior DC Cardioversion,-0.0014,Protective Factor
+123,Concomitant Atrial Flutter,0.0186,Risk Factor
+123,Preserved Renal Function (eGFR>90),-0.0264,Protective Factor
+123,LA Contractile Strain,0.0146,Risk Factor
+123,Beta Blocker Therapy,-0.0164,Protective Factor
+124,LA Volume Index (LAVi),0.0054,Risk Factor
+124,Persistent / Long-standing AF,0.0593,Risk Factor
+124,LA Reservoir Strain,0.0171,Risk Factor
+124,AF Duration,-0.002,Protective Factor
+124,Left Ventricular EF,-0.0014,Protective Factor
+124,Age,0.0028,Risk Factor
+124,CHA2DS2-VASc Score,-0.0002,Protective Factor
+124,E/e' Average (Diastolic Function),0.0042,Risk Factor
+124,Hypertension,-0.0007,Protective Factor
+124,Obstructive Sleep Apnoea,0.0343,Risk Factor
+124,Diabetes Mellitus,-0.0007,Protective Factor
+124,Antiarrhythmic Therapy,-0.0007,Protective Factor
+124,Prior DC Cardioversion,-0.0007,Protective Factor
+124,Concomitant Atrial Flutter,0.0193,Risk Factor
+124,Preserved Renal Function (eGFR>90),-0.0007,Protective Factor
+124,LA Contractile Strain,0.0056,Risk Factor
+124,Beta Blocker Therapy,-0.0007,Protective Factor
+125,LA Volume Index (LAVi),-0.0033,Protective Factor
+125,Persistent / Long-standing AF,0.0011,Risk Factor
+125,LA Reservoir Strain,-0.0046,Protective Factor
+125,AF Duration,-0.0027,Protective Factor
+125,Left Ventricular EF,-0.0012,Protective Factor
+125,Age,0.0035,Risk Factor
+125,CHA2DS2-VASc Score,0.0017,Risk Factor
+125,E/e' Average (Diastolic Function),0.0106,Risk Factor
+125,Hypertension,0.0011,Risk Factor
+125,Obstructive Sleep Apnoea,0.0011,Risk Factor
+125,Diabetes Mellitus,0.0011,Risk Factor
+125,Antiarrhythmic Therapy,-0.0389,Protective Factor
+125,Prior DC Cardioversion,0.0011,Risk Factor
+125,Concomitant Atrial Flutter,0.0011,Risk Factor
+125,Preserved Renal Function (eGFR>90),0.0011,Risk Factor
+125,LA Contractile Strain,0.0127,Risk Factor
+125,Beta Blocker Therapy,-0.0139,Protective Factor
+126,LA Volume Index (LAVi),0.0152,Risk Factor
+126,Persistent / Long-standing AF,0.0603,Risk Factor
+126,LA Reservoir Strain,0.0045,Risk Factor
+126,AF Duration,0.0059,Risk Factor
+126,Left Ventricular EF,-0.0029,Protective Factor
+126,Age,0.0014,Risk Factor
+126,CHA2DS2-VASc Score,0.0213,Risk Factor
+126,E/e' Average (Diastolic Function),-0.003,Protective Factor
+126,Hypertension,0.0303,Risk Factor
+126,Obstructive Sleep Apnoea,0.0003,Risk Factor
+126,Diabetes Mellitus,0.0003,Risk Factor
+126,Antiarrhythmic Therapy,-0.0397,Protective Factor
+126,Prior DC Cardioversion,0.0003,Risk Factor
+126,Concomitant Atrial Flutter,0.0003,Risk Factor
+126,Preserved Renal Function (eGFR>90),0.0003,Risk Factor
+126,LA Contractile Strain,0.0066,Risk Factor
+126,Beta Blocker Therapy,0.0003,Risk Factor
+127,LA Volume Index (LAVi),0.0094,Risk Factor
+127,Persistent / Long-standing AF,0.0583,Risk Factor
+127,LA Reservoir Strain,-0.0051,Protective Factor
+127,AF Duration,-0.005,Protective Factor
+127,Left Ventricular EF,-0.0057,Protective Factor
+127,Age,-0.0028,Protective Factor
+127,CHA2DS2-VASc Score,-0.0148,Protective Factor
+127,E/e' Average (Diastolic Function),-0.0037,Protective Factor
+127,Hypertension,0.0283,Risk Factor
+127,Obstructive Sleep Apnoea,-0.0017,Protective Factor
+127,Diabetes Mellitus,-0.0017,Protective Factor
+127,Antiarrhythmic Therapy,-0.0417,Protective Factor
+127,Prior DC Cardioversion,-0.0017,Protective Factor
+127,Concomitant Atrial Flutter,-0.0017,Protective Factor
+127,Preserved Renal Function (eGFR>90),-0.0017,Protective Factor
+127,LA Contractile Strain,-0.0012,Protective Factor
+127,Beta Blocker Therapy,-0.0017,Protective Factor
+128,LA Volume Index (LAVi),0.0016,Risk Factor
+128,Persistent / Long-standing AF,0.0609,Risk Factor
+128,LA Reservoir Strain,-0.0071,Protective Factor
+128,AF Duration,-0.0016,Protective Factor
+128,Left Ventricular EF,-0.0005,Protective Factor
+128,Age,0.0036,Risk Factor
+128,CHA2DS2-VASc Score,0.0015,Risk Factor
+128,E/e' Average (Diastolic Function),-0.0001,Protective Factor
+128,Hypertension,0.0309,Risk Factor
+128,Obstructive Sleep Apnoea,0.0009,Risk Factor
+128,Diabetes Mellitus,0.0009,Risk Factor
+128,Antiarrhythmic Therapy,0.0009,Risk Factor
+128,Prior DC Cardioversion,0.0009,Risk Factor
+128,Concomitant Atrial Flutter,0.0009,Risk Factor
+128,Preserved Renal Function (eGFR>90),0.0009,Risk Factor
+128,LA Contractile Strain,0.0091,Risk Factor
+128,Beta Blocker Therapy,0.0009,Risk Factor
+129,LA Volume Index (LAVi),0.0138,Risk Factor
+129,Persistent / Long-standing AF,-0.0005,Protective Factor
+129,LA Reservoir Strain,-0.0139,Protective Factor
+129,AF Duration,-0.0034,Protective Factor
+129,Left Ventricular EF,-0.0061,Protective Factor
+129,Age,-0.0003,Protective Factor
+129,CHA2DS2-VASc Score,-0.0136,Protective Factor
+129,E/e' Average (Diastolic Function),-0.0057,Protective Factor
+129,Hypertension,-0.0005,Protective Factor
+129,Obstructive Sleep Apnoea,-0.0005,Protective Factor
+129,Diabetes Mellitus,-0.0005,Protective Factor
+129,Antiarrhythmic Therapy,-0.0405,Protective Factor
+129,Prior DC Cardioversion,-0.0005,Protective Factor
+129,Concomitant Atrial Flutter,-0.0005,Protective Factor
+129,Preserved Renal Function (eGFR>90),-0.0005,Protective Factor
+129,LA Contractile Strain,-0.0206,Protective Factor
+129,Beta Blocker Therapy,-0.0155,Protective Factor
+130,LA Volume Index (LAVi),0.0136,Risk Factor
+130,Persistent / Long-standing AF,0.0612,Risk Factor
+130,LA Reservoir Strain,0.0153,Risk Factor
+130,AF Duration,0.0078,Risk Factor
+130,Left Ventricular EF,-0.0011,Protective Factor
+130,Age,0.0006,Risk Factor
+130,CHA2DS2-VASc Score,0.0018,Risk Factor
+130,E/e' Average (Diastolic Function),-0.0027,Protective Factor
+130,Hypertension,0.0312,Risk Factor
+130,Obstructive Sleep Apnoea,0.0012,Risk Factor
+130,Diabetes Mellitus,0.0262,Risk Factor
+130,Antiarrhythmic Therapy,-0.0388,Protective Factor
+130,Prior DC Cardioversion,0.0012,Risk Factor
+130,Concomitant Atrial Flutter,0.0212,Risk Factor
+130,Preserved Renal Function (eGFR>90),0.0012,Risk Factor
+130,LA Contractile Strain,0.0173,Risk Factor
+130,Beta Blocker Therapy,-0.0138,Protective Factor
+131,LA Volume Index (LAVi),-0.015,Protective Factor
+131,Persistent / Long-standing AF,0.0599,Risk Factor
+131,LA Reservoir Strain,0.0041,Risk Factor
+131,AF Duration,-0.0011,Protective Factor
+131,Left Ventricular EF,0.0026,Risk Factor
+131,Age,-0.0008,Protective Factor
+131,CHA2DS2-VASc Score,0.0005,Risk Factor
+131,E/e' Average (Diastolic Function),-0.0125,Protective Factor
+131,Hypertension,0.0299,Risk Factor
+131,Obstructive Sleep Apnoea,-0.0001,Protective Factor
+131,Diabetes Mellitus,0.0249,Risk Factor
+131,Antiarrhythmic Therapy,-0.0001,Protective Factor
+131,Prior DC Cardioversion,-0.0001,Protective Factor
+131,Concomitant Atrial Flutter,-0.0001,Protective Factor
+131,Preserved Renal Function (eGFR>90),-0.0251,Protective Factor
+131,LA Contractile Strain,0.0002,Risk Factor
+131,Beta Blocker Therapy,-0.0151,Protective Factor
+132,LA Volume Index (LAVi),-0.0204,Protective Factor
+132,Persistent / Long-standing AF,0.0002,Risk Factor
+132,LA Reservoir Strain,-0.0109,Protective Factor
+132,AF Duration,-0.0034,Protective Factor
+132,Left Ventricular EF,-0.0021,Protective Factor
+132,Age,-0.0025,Protective Factor
+132,CHA2DS2-VASc Score,-0.0129,Protective Factor
+132,E/e' Average (Diastolic Function),-0.0047,Protective Factor
+132,Hypertension,0.0302,Risk Factor
+132,Obstructive Sleep Apnoea,0.0002,Risk Factor
+132,Diabetes Mellitus,0.0002,Risk Factor
+132,Antiarrhythmic Therapy,-0.0398,Protective Factor
+132,Prior DC Cardioversion,0.0002,Risk Factor
+132,Concomitant Atrial Flutter,0.0002,Risk Factor
+132,Preserved Renal Function (eGFR>90),0.0002,Risk Factor
+132,LA Contractile Strain,-0.01,Protective Factor
+132,Beta Blocker Therapy,-0.0148,Protective Factor
+133,LA Volume Index (LAVi),-0.0258,Protective Factor
+133,Persistent / Long-standing AF,0.001,Risk Factor
+133,LA Reservoir Strain,-0.022,Protective Factor
+133,AF Duration,-0.002,Protective Factor
+133,Left Ventricular EF,-0.0013,Protective Factor
+133,Age,-0.003,Protective Factor
+133,CHA2DS2-VASc Score,-0.0121,Protective Factor
+133,E/e' Average (Diastolic Function),-0.0,Protective Factor
+133,Hypertension,0.031,Risk Factor
+133,Obstructive Sleep Apnoea,0.001,Risk Factor
+133,Diabetes Mellitus,0.001,Risk Factor
+133,Antiarrhythmic Therapy,-0.039,Protective Factor
+133,Prior DC Cardioversion,0.021,Risk Factor
+133,Concomitant Atrial Flutter,0.021,Risk Factor
+133,Preserved Renal Function (eGFR>90),-0.024,Protective Factor
+133,LA Contractile Strain,-0.0096,Protective Factor
+133,Beta Blocker Therapy,-0.014,Protective Factor
+134,LA Volume Index (LAVi),-0.0093,Protective Factor
+134,Persistent / Long-standing AF,-0.0008,Protective Factor
+134,LA Reservoir Strain,-0.0175,Protective Factor
+134,AF Duration,-0.0028,Protective Factor
+134,Left Ventricular EF,-0.0039,Protective Factor
+134,Age,-0.0006,Protective Factor
+134,CHA2DS2-VASc Score,0.0066,Risk Factor
+134,E/e' Average (Diastolic Function),-0.006,Protective Factor
+134,Hypertension,0.0292,Risk Factor
+134,Obstructive Sleep Apnoea,-0.0008,Protective Factor
+134,Diabetes Mellitus,-0.0008,Protective Factor
+134,Antiarrhythmic Therapy,-0.0408,Protective Factor
+134,Prior DC Cardioversion,-0.0008,Protective Factor
+134,Concomitant Atrial Flutter,-0.0008,Protective Factor
+134,Preserved Renal Function (eGFR>90),-0.0008,Protective Factor
+134,LA Contractile Strain,-0.0077,Protective Factor
+134,Beta Blocker Therapy,-0.0158,Protective Factor
+135,LA Volume Index (LAVi),0.0039,Risk Factor
+135,Persistent / Long-standing AF,0.0591,Risk Factor
+135,LA Reservoir Strain,-0.0047,Protective Factor
+135,AF Duration,-0.0012,Protective Factor
+135,Left Ventricular EF,-0.0132,Protective Factor
+135,Age,0.0024,Risk Factor
+135,CHA2DS2-VASc Score,0.0065,Risk Factor
+135,E/e' Average (Diastolic Function),0.0088,Risk Factor
+135,Hypertension,0.0291,Risk Factor
+135,Obstructive Sleep Apnoea,-0.0009,Protective Factor
+135,Diabetes Mellitus,-0.0009,Protective Factor
+135,Antiarrhythmic Therapy,-0.0409,Protective Factor
+135,Prior DC Cardioversion,0.0191,Risk Factor
+135,Concomitant Atrial Flutter,-0.0009,Protective Factor
+135,Preserved Renal Function (eGFR>90),-0.0009,Protective Factor
+135,LA Contractile Strain,0.0045,Risk Factor
+135,Beta Blocker Therapy,-0.0159,Protective Factor
+136,LA Volume Index (LAVi),-0.0131,Protective Factor
+136,Persistent / Long-standing AF,-0.0002,Protective Factor
+136,LA Reservoir Strain,-0.0032,Protective Factor
+136,AF Duration,-0.0005,Protective Factor
+136,Left Ventricular EF,0.0009,Risk Factor
+136,Age,-0.0044,Protective Factor
+136,CHA2DS2-VASc Score,-0.0064,Protective Factor
+136,E/e' Average (Diastolic Function),-0.003,Protective Factor
+136,Hypertension,0.0298,Risk Factor
+136,Obstructive Sleep Apnoea,0.0348,Risk Factor
+136,Diabetes Mellitus,-0.0002,Protective Factor
+136,Antiarrhythmic Therapy,-0.0402,Protective Factor
+136,Prior DC Cardioversion,-0.0002,Protective Factor
+136,Concomitant Atrial Flutter,-0.0002,Protective Factor
+136,Preserved Renal Function (eGFR>90),-0.0002,Protective Factor
+136,LA Contractile Strain,-0.0168,Protective Factor
+136,Beta Blocker Therapy,-0.0002,Protective Factor
+137,LA Volume Index (LAVi),0.0336,Risk Factor
+137,Persistent / Long-standing AF,0.0607,Risk Factor
+137,LA Reservoir Strain,0.0174,Risk Factor
+137,AF Duration,0.0087,Risk Factor
+137,Left Ventricular EF,-0.0041,Protective Factor
+137,Age,0.0038,Risk Factor
+137,CHA2DS2-VASc Score,0.0081,Risk Factor
+137,E/e' Average (Diastolic Function),0.0074,Risk Factor
+137,Hypertension,0.0307,Risk Factor
+137,Obstructive Sleep Apnoea,0.0007,Risk Factor
+137,Diabetes Mellitus,0.0007,Risk Factor
+137,Antiarrhythmic Therapy,0.0007,Risk Factor
+137,Prior DC Cardioversion,0.0007,Risk Factor
+137,Concomitant Atrial Flutter,0.0207,Risk Factor
+137,Preserved Renal Function (eGFR>90),0.0007,Risk Factor
+137,LA Contractile Strain,-0.0001,Protective Factor
+137,Beta Blocker Therapy,0.0007,Risk Factor
+138,LA Volume Index (LAVi),0.0115,Risk Factor
+138,Persistent / Long-standing AF,0.0588,Risk Factor
+138,LA Reservoir Strain,-0.001,Protective Factor
+138,AF Duration,-0.0006,Protective Factor
+138,Left Ventricular EF,-0.0093,Protective Factor
+138,Age,0.0015,Risk Factor
+138,CHA2DS2-VASc Score,-0.0006,Protective Factor
+138,E/e' Average (Diastolic Function),0.0005,Risk Factor
+138,Hypertension,0.0288,Risk Factor
+138,Obstructive Sleep Apnoea,0.0338,Risk Factor
+138,Diabetes Mellitus,-0.0012,Protective Factor
+138,Antiarrhythmic Therapy,-0.0412,Protective Factor
+138,Prior DC Cardioversion,-0.0012,Protective Factor
+138,Concomitant Atrial Flutter,0.0188,Risk Factor
+138,Preserved Renal Function (eGFR>90),-0.0012,Protective Factor
+138,LA Contractile Strain,0.0067,Risk Factor
+138,Beta Blocker Therapy,-0.0162,Protective Factor
+139,LA Volume Index (LAVi),0.0004,Risk Factor
+139,Persistent / Long-standing AF,-0.0015,Protective Factor
+139,LA Reservoir Strain,0.0037,Risk Factor
+139,AF Duration,0.001,Risk Factor
+139,Left Ventricular EF,0.0038,Risk Factor
+139,Age,-0.0037,Protective Factor
+139,CHA2DS2-VASc Score,-0.0077,Protective Factor
+139,E/e' Average (Diastolic Function),-0.0003,Protective Factor
+139,Hypertension,0.0285,Risk Factor
+139,Obstructive Sleep Apnoea,0.0335,Risk Factor
+139,Diabetes Mellitus,-0.0015,Protective Factor
+139,Antiarrhythmic Therapy,-0.0015,Protective Factor
+139,Prior DC Cardioversion,-0.0015,Protective Factor
+139,Concomitant Atrial Flutter,-0.0015,Protective Factor
+139,Preserved Renal Function (eGFR>90),-0.0015,Protective Factor
+139,LA Contractile Strain,-0.0149,Protective Factor
+139,Beta Blocker Therapy,-0.0015,Protective Factor
+140,LA Volume Index (LAVi),-0.0026,Protective Factor
+140,Persistent / Long-standing AF,0.0607,Risk Factor
+140,LA Reservoir Strain,0.0061,Risk Factor
+140,AF Duration,0.0022,Risk Factor
+140,Left Ventricular EF,-0.0066,Protective Factor
+140,Age,0.0016,Risk Factor
+140,CHA2DS2-VASc Score,0.0013,Risk Factor
+140,E/e' Average (Diastolic Function),0.0024,Risk Factor
+140,Hypertension,0.0307,Risk Factor
+140,Obstructive Sleep Apnoea,0.0007,Risk Factor
+140,Diabetes Mellitus,0.0007,Risk Factor
+140,Antiarrhythmic Therapy,0.0007,Risk Factor
+140,Prior DC Cardioversion,0.0207,Risk Factor
+140,Concomitant Atrial Flutter,0.0207,Risk Factor
+140,Preserved Renal Function (eGFR>90),0.0007,Risk Factor
+140,LA Contractile Strain,0.0119,Risk Factor
+140,Beta Blocker Therapy,0.0007,Risk Factor
+141,LA Volume Index (LAVi),-0.0012,Protective Factor
+141,Persistent / Long-standing AF,0.0595,Risk Factor
+141,LA Reservoir Strain,0.0043,Risk Factor
+141,AF Duration,0.0071,Risk Factor
+141,Left Ventricular EF,-0.0003,Protective Factor
+141,Age,-0.0039,Protective Factor
+141,CHA2DS2-VASc Score,-0.0205,Protective Factor
+141,E/e' Average (Diastolic Function),0.0064,Risk Factor
+141,Hypertension,-0.0005,Protective Factor
+141,Obstructive Sleep Apnoea,0.0345,Risk Factor
+141,Diabetes Mellitus,-0.0005,Protective Factor
+141,Antiarrhythmic Therapy,-0.0405,Protective Factor
+141,Prior DC Cardioversion,-0.0005,Protective Factor
+141,Concomitant Atrial Flutter,0.0195,Risk Factor
+141,Preserved Renal Function (eGFR>90),-0.0255,Protective Factor
+141,LA Contractile Strain,-0.0023,Protective Factor
+141,Beta Blocker Therapy,-0.0155,Protective Factor
+142,LA Volume Index (LAVi),-0.0087,Protective Factor
+142,Persistent / Long-standing AF,-0.0003,Protective Factor
+142,LA Reservoir Strain,-0.0179,Protective Factor
+142,AF Duration,-0.0025,Protective Factor
+142,Left Ventricular EF,0.004,Risk Factor
+142,Age,0.0019,Risk Factor
+142,CHA2DS2-VASc Score,0.0071,Risk Factor
+142,E/e' Average (Diastolic Function),-0.0028,Protective Factor
+142,Hypertension,0.0297,Risk Factor
+142,Obstructive Sleep Apnoea,0.0347,Risk Factor
+142,Diabetes Mellitus,-0.0003,Protective Factor
+142,Antiarrhythmic Therapy,-0.0403,Protective Factor
+142,Prior DC Cardioversion,-0.0003,Protective Factor
+142,Concomitant Atrial Flutter,-0.0003,Protective Factor
+142,Preserved Renal Function (eGFR>90),-0.0003,Protective Factor
+142,LA Contractile Strain,-0.0012,Protective Factor
+142,Beta Blocker Therapy,-0.0153,Protective Factor
+143,LA Volume Index (LAVi),-0.0085,Protective Factor
+143,Persistent / Long-standing AF,-0.0016,Protective Factor
+143,LA Reservoir Strain,-0.0038,Protective Factor
+143,AF Duration,-0.0038,Protective Factor
+143,Left Ventricular EF,0.0011,Risk Factor
+143,Age,-0.0001,Protective Factor
+143,CHA2DS2-VASc Score,0.0126,Risk Factor
+143,E/e' Average (Diastolic Function),-0.002,Protective Factor
+143,Hypertension,0.0284,Risk Factor
+143,Obstructive Sleep Apnoea,0.0334,Risk Factor
+143,Diabetes Mellitus,-0.0016,Protective Factor
+143,Antiarrhythmic Therapy,-0.0016,Protective Factor
+143,Prior DC Cardioversion,-0.0016,Protective Factor
+143,Concomitant Atrial Flutter,-0.0016,Protective Factor
+143,Preserved Renal Function (eGFR>90),-0.0016,Protective Factor
+143,LA Contractile Strain,-0.0194,Protective Factor
+143,Beta Blocker Therapy,-0.0016,Protective Factor
+144,LA Volume Index (LAVi),-0.0274,Protective Factor
+144,Persistent / Long-standing AF,-0.0006,Protective Factor
+144,LA Reservoir Strain,0.0099,Risk Factor
+144,AF Duration,-0.005,Protective Factor
+144,Left Ventricular EF,-0.0012,Protective Factor
+144,Age,-0.0022,Protective Factor
+144,CHA2DS2-VASc Score,-0.0137,Protective Factor
+144,E/e' Average (Diastolic Function),-0.0017,Protective Factor
+144,Hypertension,0.0294,Risk Factor
+144,Obstructive Sleep Apnoea,-0.0006,Protective Factor
+144,Diabetes Mellitus,-0.0006,Protective Factor
+144,Antiarrhythmic Therapy,-0.0406,Protective Factor
+144,Prior DC Cardioversion,0.0194,Risk Factor
+144,Concomitant Atrial Flutter,-0.0006,Protective Factor
+144,Preserved Renal Function (eGFR>90),-0.0256,Protective Factor
+144,LA Contractile Strain,-0.0327,Protective Factor
+144,Beta Blocker Therapy,-0.0006,Protective Factor
+145,LA Volume Index (LAVi),-0.0117,Protective Factor
+145,Persistent / Long-standing AF,-0.0,Protective Factor
+145,LA Reservoir Strain,-0.0097,Protective Factor
+145,AF Duration,-0.0041,Protective Factor
+145,Left Ventricular EF,-0.004,Protective Factor
+145,Age,-0.0042,Protective Factor
+145,CHA2DS2-VASc Score,-0.0063,Protective Factor
+145,E/e' Average (Diastolic Function),-0.0043,Protective Factor
+145,Hypertension,0.03,Risk Factor
+145,Obstructive Sleep Apnoea,-0.0,Protective Factor
+145,Diabetes Mellitus,0.025,Risk Factor
+145,Antiarrhythmic Therapy,-0.0,Protective Factor
+145,Prior DC Cardioversion,0.02,Risk Factor
+145,Concomitant Atrial Flutter,-0.0,Protective Factor
+145,Preserved Renal Function (eGFR>90),-0.025,Protective Factor
+145,LA Contractile Strain,-0.0074,Protective Factor
+145,Beta Blocker Therapy,-0.0,Protective Factor
+146,LA Volume Index (LAVi),-0.0083,Protective Factor
+146,Persistent / Long-standing AF,0.0008,Risk Factor
+146,LA Reservoir Strain,0.0009,Risk Factor
+146,AF Duration,-0.0023,Protective Factor
+146,Left Ventricular EF,-0.0065,Protective Factor
+146,Age,0.0048,Risk Factor
+146,CHA2DS2-VASc Score,0.0082,Risk Factor
+146,E/e' Average (Diastolic Function),-0.0001,Protective Factor
+146,Hypertension,0.0308,Risk Factor
+146,Obstructive Sleep Apnoea,0.0358,Risk Factor
+146,Diabetes Mellitus,0.0258,Risk Factor
+146,Antiarrhythmic Therapy,0.0008,Risk Factor
+146,Prior DC Cardioversion,0.0008,Risk Factor
+146,Concomitant Atrial Flutter,0.0208,Risk Factor
+146,Preserved Renal Function (eGFR>90),0.0008,Risk Factor
+146,LA Contractile Strain,0.0131,Risk Factor
+146,Beta Blocker Therapy,0.0008,Risk Factor
+147,LA Volume Index (LAVi),0.0074,Risk Factor
+147,Persistent / Long-standing AF,0.0593,Risk Factor
+147,LA Reservoir Strain,0.0045,Risk Factor
+147,AF Duration,0.0072,Risk Factor
+147,Left Ventricular EF,-0.0047,Protective Factor
+147,Age,-0.0014,Protective Factor
+147,CHA2DS2-VASc Score,-0.0069,Protective Factor
+147,E/e' Average (Diastolic Function),0.0104,Risk Factor
+147,Hypertension,0.0293,Risk Factor
+147,Obstructive Sleep Apnoea,-0.0007,Protective Factor
+147,Diabetes Mellitus,0.0243,Risk Factor
+147,Antiarrhythmic Therapy,-0.0407,Protective Factor
+147,Prior DC Cardioversion,-0.0007,Protective Factor
+147,Concomitant Atrial Flutter,0.0193,Risk Factor
+147,Preserved Renal Function (eGFR>90),-0.0257,Protective Factor
+147,LA Contractile Strain,0.0114,Risk Factor
+147,Beta Blocker Therapy,-0.0007,Protective Factor
+148,LA Volume Index (LAVi),-0.0162,Protective Factor
+148,Persistent / Long-standing AF,0.0015,Risk Factor
+148,LA Reservoir Strain,-0.0047,Protective Factor
+148,AF Duration,-0.0005,Protective Factor
+148,Left Ventricular EF,-0.0084,Protective Factor
+148,Age,0.0048,Risk Factor
+148,CHA2DS2-VASc Score,0.002,Risk Factor
+148,E/e' Average (Diastolic Function),-0.0026,Protective Factor
+148,Hypertension,0.0015,Risk Factor
+148,Obstructive Sleep Apnoea,0.0015,Risk Factor
+148,Diabetes Mellitus,0.0015,Risk Factor
+148,Antiarrhythmic Therapy,-0.0385,Protective Factor
+148,Prior DC Cardioversion,0.0015,Risk Factor
+148,Concomitant Atrial Flutter,0.0015,Risk Factor
+148,Preserved Renal Function (eGFR>90),0.0015,Risk Factor
+148,LA Contractile Strain,-0.0198,Protective Factor
+148,Beta Blocker Therapy,-0.0135,Protective Factor
+149,LA Volume Index (LAVi),-0.0159,Protective Factor
+149,Persistent / Long-standing AF,-0.0006,Protective Factor
+149,LA Reservoir Strain,-0.0049,Protective Factor
+149,AF Duration,-0.0038,Protective Factor
+149,Left Ventricular EF,-0.0021,Protective Factor
+149,Age,0.0007,Risk Factor
+149,CHA2DS2-VASc Score,-0.0069,Protective Factor
+149,E/e' Average (Diastolic Function),-0.0013,Protective Factor
+149,Hypertension,0.0294,Risk Factor
+149,Obstructive Sleep Apnoea,0.0344,Risk Factor
+149,Diabetes Mellitus,-0.0006,Protective Factor
+149,Antiarrhythmic Therapy,-0.0406,Protective Factor
+149,Prior DC Cardioversion,-0.0006,Protective Factor
+149,Concomitant Atrial Flutter,-0.0006,Protective Factor
+149,Preserved Renal Function (eGFR>90),-0.0006,Protective Factor
+149,LA Contractile Strain,-0.0151,Protective Factor
+149,Beta Blocker Therapy,-0.0006,Protective Factor
+150,LA Volume Index (LAVi),0.0061,Risk Factor
+150,Persistent / Long-standing AF,0.0594,Risk Factor
+150,LA Reservoir Strain,-0.0015,Protective Factor
+150,AF Duration,0.0039,Risk Factor
+150,Left Ventricular EF,0.0071,Risk Factor
+150,Age,0.0016,Risk Factor
+150,CHA2DS2-VASc Score,0.0273,Risk Factor
+150,E/e' Average (Diastolic Function),0.0059,Risk Factor
+150,Hypertension,0.0294,Risk Factor
+150,Obstructive Sleep Apnoea,0.0344,Risk Factor
+150,Diabetes Mellitus,0.0244,Risk Factor
+150,Antiarrhythmic Therapy,-0.0406,Protective Factor
+150,Prior DC Cardioversion,-0.0006,Protective Factor
+150,Concomitant Atrial Flutter,-0.0006,Protective Factor
+150,Preserved Renal Function (eGFR>90),-0.0006,Protective Factor
+150,LA Contractile Strain,0.0038,Risk Factor
+150,Beta Blocker Therapy,-0.0156,Protective Factor
+151,LA Volume Index (LAVi),0.0127,Risk Factor
+151,Persistent / Long-standing AF,0.0614,Risk Factor
+151,LA Reservoir Strain,0.0192,Risk Factor
+151,AF Duration,0.009,Risk Factor
+151,Left Ventricular EF,-0.0085,Protective Factor
+151,Age,0.0036,Risk Factor
+151,CHA2DS2-VASc Score,0.0156,Risk Factor
+151,E/e' Average (Diastolic Function),0.0072,Risk Factor
+151,Hypertension,0.0314,Risk Factor
+151,Obstructive Sleep Apnoea,0.0014,Risk Factor
+151,Diabetes Mellitus,0.0014,Risk Factor
+151,Antiarrhythmic Therapy,-0.0386,Protective Factor
+151,Prior DC Cardioversion,0.0214,Risk Factor
+151,Concomitant Atrial Flutter,0.0014,Risk Factor
+151,Preserved Renal Function (eGFR>90),0.0014,Risk Factor
+151,LA Contractile Strain,-0.0004,Protective Factor
+151,Beta Blocker Therapy,0.0014,Risk Factor
+152,LA Volume Index (LAVi),0.0138,Risk Factor
+152,Persistent / Long-standing AF,0.0602,Risk Factor
+152,LA Reservoir Strain,0.0106,Risk Factor
+152,AF Duration,0.0014,Risk Factor
+152,Left Ventricular EF,-0.0046,Protective Factor
+152,Age,-0.0029,Protective Factor
+152,CHA2DS2-VASc Score,-0.0129,Protective Factor
+152,E/e' Average (Diastolic Function),0.0006,Risk Factor
+152,Hypertension,0.0302,Risk Factor
+152,Obstructive Sleep Apnoea,0.0002,Risk Factor
+152,Diabetes Mellitus,0.0002,Risk Factor
+152,Antiarrhythmic Therapy,-0.0398,Protective Factor
+152,Prior DC Cardioversion,0.0002,Risk Factor
+152,Concomitant Atrial Flutter,0.0002,Risk Factor
+152,Preserved Renal Function (eGFR>90),0.0002,Risk Factor
+152,LA Contractile Strain,0.0037,Risk Factor
+152,Beta Blocker Therapy,-0.0148,Protective Factor
+153,LA Volume Index (LAVi),0.0189,Risk Factor
+153,Persistent / Long-standing AF,0.0595,Risk Factor
+153,LA Reservoir Strain,0.0017,Risk Factor
+153,AF Duration,0.0017,Risk Factor
+153,Left Ventricular EF,0.0098,Risk Factor
+153,Age,-0.002,Protective Factor
+153,CHA2DS2-VASc Score,0.0001,Risk Factor
+153,E/e' Average (Diastolic Function),-0.0116,Protective Factor
+153,Hypertension,0.0295,Risk Factor
+153,Obstructive Sleep Apnoea,-0.0005,Protective Factor
+153,Diabetes Mellitus,-0.0005,Protective Factor
+153,Antiarrhythmic Therapy,-0.0005,Protective Factor
+153,Prior DC Cardioversion,0.0195,Risk Factor
+153,Concomitant Atrial Flutter,0.0195,Risk Factor
+153,Preserved Renal Function (eGFR>90),-0.0005,Protective Factor
+153,LA Contractile Strain,-0.0025,Protective Factor
+153,Beta Blocker Therapy,-0.0155,Protective Factor
+154,LA Volume Index (LAVi),-0.0124,Protective Factor
+154,Persistent / Long-standing AF,-0.0001,Protective Factor
+154,LA Reservoir Strain,-0.0013,Protective Factor
+154,AF Duration,-0.0026,Protective Factor
+154,Left Ventricular EF,0.0017,Risk Factor
+154,Age,-0.0006,Protective Factor
+154,CHA2DS2-VASc Score,-0.0132,Protective Factor
+154,E/e' Average (Diastolic Function),-0.0004,Protective Factor
+154,Hypertension,-0.0001,Protective Factor
+154,Obstructive Sleep Apnoea,-0.0001,Protective Factor
+154,Diabetes Mellitus,-0.0001,Protective Factor
+154,Antiarrhythmic Therapy,-0.0001,Protective Factor
+154,Prior DC Cardioversion,-0.0001,Protective Factor
+154,Concomitant Atrial Flutter,-0.0001,Protective Factor
+154,Preserved Renal Function (eGFR>90),-0.0251,Protective Factor
+154,LA Contractile Strain,-0.0175,Protective Factor
+154,Beta Blocker Therapy,-0.0001,Protective Factor
+155,LA Volume Index (LAVi),-0.0129,Protective Factor
+155,Persistent / Long-standing AF,0.0012,Risk Factor
+155,LA Reservoir Strain,0.0075,Risk Factor
+155,AF Duration,-0.0016,Protective Factor
+155,Left Ventricular EF,0.0048,Risk Factor
+155,Age,0.001,Risk Factor
+155,CHA2DS2-VASc Score,-0.0051,Protective Factor
+155,E/e' Average (Diastolic Function),-0.0112,Protective Factor
+155,Hypertension,0.0012,Risk Factor
+155,Obstructive Sleep Apnoea,0.0362,Risk Factor
+155,Diabetes Mellitus,0.0262,Risk Factor
+155,Antiarrhythmic Therapy,0.0012,Risk Factor
+155,Prior DC Cardioversion,0.0012,Risk Factor
+155,Concomitant Atrial Flutter,0.0012,Risk Factor
+155,Preserved Renal Function (eGFR>90),0.0012,Risk Factor
+155,LA Contractile Strain,-0.0219,Protective Factor
+155,Beta Blocker Therapy,-0.0138,Protective Factor
+156,LA Volume Index (LAVi),0.0114,Risk Factor
+156,Persistent / Long-standing AF,0.0613,Risk Factor
+156,LA Reservoir Strain,0.0019,Risk Factor
+156,AF Duration,-0.0004,Protective Factor
+156,Left Ventricular EF,0.0015,Risk Factor
+156,Age,-0.0031,Protective Factor
+156,CHA2DS2-VASc Score,0.0019,Risk Factor
+156,E/e' Average (Diastolic Function),0.0087,Risk Factor
+156,Hypertension,0.0313,Risk Factor
+156,Obstructive Sleep Apnoea,0.0013,Risk Factor
+156,Diabetes Mellitus,0.0263,Risk Factor
+156,Antiarrhythmic Therapy,-0.0387,Protective Factor
+156,Prior DC Cardioversion,0.0013,Risk Factor
+156,Concomitant Atrial Flutter,0.0013,Risk Factor
+156,Preserved Renal Function (eGFR>90),0.0013,Risk Factor
+156,LA Contractile Strain,0.0053,Risk Factor
+156,Beta Blocker Therapy,0.0013,Risk Factor
+157,LA Volume Index (LAVi),0.0112,Risk Factor
+157,Persistent / Long-standing AF,0.0593,Risk Factor
+157,LA Reservoir Strain,-0.0033,Protective Factor
+157,AF Duration,-0.0027,Protective Factor
+157,Left Ventricular EF,0.0079,Risk Factor
+157,Age,-0.0005,Protective Factor
+157,CHA2DS2-VASc Score,0.0135,Risk Factor
+157,E/e' Average (Diastolic Function),0.0005,Risk Factor
+157,Hypertension,0.0293,Risk Factor
+157,Obstructive Sleep Apnoea,-0.0007,Protective Factor
+157,Diabetes Mellitus,-0.0007,Protective Factor
+157,Antiarrhythmic Therapy,-0.0407,Protective Factor
+157,Prior DC Cardioversion,-0.0007,Protective Factor
+157,Concomitant Atrial Flutter,-0.0007,Protective Factor
+157,Preserved Renal Function (eGFR>90),-0.0257,Protective Factor
+157,LA Contractile Strain,-0.0014,Protective Factor
+157,Beta Blocker Therapy,-0.0157,Protective Factor
+158,LA Volume Index (LAVi),0.0037,Risk Factor
+158,Persistent / Long-standing AF,0.06,Risk Factor
+158,LA Reservoir Strain,0.0051,Risk Factor
+158,AF Duration,0.0044,Risk Factor
+158,Left Ventricular EF,-0.0032,Protective Factor
+158,Age,-0.0034,Protective Factor
+158,CHA2DS2-VASc Score,-0.0063,Protective Factor
+158,E/e' Average (Diastolic Function),0.0052,Risk Factor
+158,Hypertension,0.03,Risk Factor
+158,Obstructive Sleep Apnoea,0.035,Risk Factor
+158,Diabetes Mellitus,0.025,Risk Factor
+158,Antiarrhythmic Therapy,-0.04,Protective Factor
+158,Prior DC Cardioversion,0.02,Risk Factor
+158,Concomitant Atrial Flutter,-0.0,Protective Factor
+158,Preserved Renal Function (eGFR>90),-0.0,Protective Factor
+158,LA Contractile Strain,0.0088,Risk Factor
+158,Beta Blocker Therapy,-0.0,Protective Factor
+159,LA Volume Index (LAVi),0.0011,Risk Factor
+159,Persistent / Long-standing AF,0.0001,Risk Factor
+159,LA Reservoir Strain,0.0118,Risk Factor
+159,AF Duration,-0.0003,Protective Factor
+159,Left Ventricular EF,-0.0022,Protective Factor
+159,Age,0.0021,Risk Factor
+159,CHA2DS2-VASc Score,0.0006,Risk Factor
+159,E/e' Average (Diastolic Function),-0.0071,Protective Factor
+159,Hypertension,0.0301,Risk Factor
+159,Obstructive Sleep Apnoea,0.0001,Risk Factor
+159,Diabetes Mellitus,0.0001,Risk Factor
+159,Antiarrhythmic Therapy,-0.0399,Protective Factor
+159,Prior DC Cardioversion,0.0001,Risk Factor
+159,Concomitant Atrial Flutter,0.0001,Risk Factor
+159,Preserved Renal Function (eGFR>90),0.0001,Risk Factor
+159,LA Contractile Strain,-0.0003,Protective Factor
+159,Beta Blocker Therapy,0.0001,Risk Factor
+160,LA Volume Index (LAVi),0.0162,Risk Factor
+160,Persistent / Long-standing AF,0.0591,Risk Factor
+160,LA Reservoir Strain,0.0007,Risk Factor
+160,AF Duration,-0.0009,Protective Factor
+160,Left Ventricular EF,0.001,Risk Factor
+160,Age,0.0007,Risk Factor
+160,CHA2DS2-VASc Score,-0.0003,Protective Factor
+160,E/e' Average (Diastolic Function),-0.008,Protective Factor
+160,Hypertension,-0.0009,Protective Factor
+160,Obstructive Sleep Apnoea,-0.0009,Protective Factor
+160,Diabetes Mellitus,0.0241,Risk Factor
+160,Antiarrhythmic Therapy,-0.0009,Protective Factor
+160,Prior DC Cardioversion,0.0191,Risk Factor
+160,Concomitant Atrial Flutter,-0.0009,Protective Factor
+160,Preserved Renal Function (eGFR>90),-0.0009,Protective Factor
+160,LA Contractile Strain,-0.008,Protective Factor
+160,Beta Blocker Therapy,-0.0159,Protective Factor
